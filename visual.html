@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BH — Pitch Visual</title>
+<style>
+:root { --accent: #2e7d32; --ink: #1b1f23; --muted: #57606a;
+        --line: #e1e4e8; --bg: #fff; --code-bg: #f6f8fa; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; color: var(--ink); background: var(--bg);
+       font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+       Helvetica, Arial, sans-serif; }
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92);
+       backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+.nav .in { max-width: 860px; margin: 0 auto; padding: 12px 24px; display: flex;
+           gap: 18px; align-items: center; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 14px;
+         font-weight: 500; }
+.nav a:hover, .nav a.active { color: var(--accent); }
+.nav .brand { color: var(--ink); font-weight: 700; margin-right: auto; }
+.nav .gh { border: 1px solid var(--line); padding: 4px 12px; border-radius: 6px; }
+main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; margin: 1.6em 0 .6em; }
+h1 { font-size: 2em; margin-top: .2em; }
+h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid var(--line); }
+h3 { font-size: 1.2em; }
+a { color: var(--accent); }
+p, li { color: var(--ink); }
+blockquote { margin: 1em 0; padding: .4em 1.1em; border-left: 4px solid var(--accent);
+             background: #f3f8f4; color: #24433; border-radius: 0 6px 6px 0; }
+blockquote p { margin: .4em 0; }
+code { background: var(--code-bg); padding: .15em .4em; border-radius: 5px;
+       font: .88em/1.5 "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+pre { background: var(--code-bg); padding: 16px; border-radius: 8px; overflow: auto;
+      border: 1px solid var(--line); }
+pre code { background: none; padding: 0; font-size: .85em; }
+table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: .95em;
+        display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; }
+th { background: var(--code-bg); font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+img { max-width: 100%; height: auto; border: 1px solid var(--line);
+      border-radius: 8px; margin: 1em 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+.foot { max-width: 860px; margin: 0 auto; padding: 24px; color: var(--muted);
+        font-size: 13px; border-top: 1px solid var(--line); }
+/* landing */
+.hero { padding: 56px 0 8px; }
+.hero .lead { font-size: 1.5em; font-weight: 600; line-height: 1.4; }
+.hero .sub { color: var(--muted); font-size: 1.05em; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+         gap: 16px; margin: 28px 0; }
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 20px;
+        text-decoration: none; color: var(--ink); transition: .15s;
+        display: block; }
+.card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,.06);
+              transform: translateY(-2px); }
+.card .t { font-weight: 700; font-size: 1.1em; color: var(--accent); }
+.card .d { color: var(--muted); font-size: .92em; margin-top: 6px; }
+.pill { display: inline-block; background: #f3f8f4; color: var(--accent);
+        border: 1px solid #cfe6d4; border-radius: 999px; padding: 2px 12px;
+        font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+</style>
+</head><body>
+<div class="nav"><div class="in"><a href="index.html" class="brand">Bits Hierárquicos</a><a href="index.html" class="">Início</a><a href="master.html" class="">Estudo</a><a href="pitch.html" class="">Pitch</a><a href="visual.html" class="active">Pitch Visual</a><a class="gh" href="https://github.com/mmcarvalhodev/bits-hierarquicos">GitHub ↗</a></div></div>
+<main><h1 id="bits-hierarquicos-pitch-visual-graficos-comparativos">Bits Hierárquicos — Pitch Visual (gráficos comparativos)</h1>
+<blockquote>
+<p>Uma estrutura que representa um ativo heterogêneo, navega por partes dele sem
+carregar tudo, e delega cada região ao melhor formato especialista.</p>
+</blockquote>
+<hr>
+<h2 id="1-a-uniao-que-ninguem-vende">1. A união que ninguém vende</h2>
+<p>Cada formato de hoje cobre só um pedaço. O <code>.bh</code> é o único que une todas as
+capacidades numa estrutura só.</p>
+<p><img alt="Matriz de capacidades" src="pitch_assets/01_matriz_capacidades.png"></p>
+<pre><code>WebP/AVIF  → compacto, mas leitura única, sem orquestração nem hierarquia
+PDF        → orquestra e é auto-descritivo, mas lista plana, sem leitura seletiva
+OLAP/V-DB  → leitura seletiva e hierarquia, mas não é formato de representação
+AST/JSON   → estrutura explícita, mas não compacto nem orquestra
+.bh        → TODAS as capacidades, num envelope
+</code></pre>
+<hr>
+<h2 id="2-o-mesmo-arquivo-menor-e-navegavel">2. O mesmo arquivo: menor E navegável</h2>
+<p>Não é "ou compacto ou navegável". É os dois, medido contra o WebP num
+documento estruturado.</p>
+<p><img alt="A união medida" src="pitch_assets/02_uniao.png"></p>
+<ul>
+<li><strong>2,1× menor</strong> que o WebP (cada região no formato que lhe convém).</li>
+<li><strong>3–55× menos bytes</strong> para ler qualquer região — o WebP decodifica o arquivo
+  inteiro para qualquer pedaço; o <code>.bh</code> lê só o ramo pedido.</li>
+</ul>
+<hr>
+<h2 id="3-onde-rende-e-onde-delega-a-fronteira-honesta">3. Onde rende e onde delega (a fronteira honesta)</h2>
+<p>O BH não é mágica universal. Ele rende onde o dado é <strong>estrutura</strong> e <strong>delega</strong>
+onde é <strong>sinal denso</strong>.</p>
+<p><img alt="Onde rende" src="pitch_assets/03_onde_rende.png"></p>
+<pre><code>ESTRUTURA (ganha)           Procedural 2.904–3.572× · Simbólico 384× ·
+                            Documento 2,1×
+LEITURA SELETIVA (âncora)   ~100×, mas é mecanismo já existente (OLAP/Merkle):
+                            credibilidade, não novidade
+SINAL DENSO (delega)        Foto natural: o WebP/AVIF ganha — o BH o convoca,
+                            não compete
+</code></pre>
+<p>A fronteira não é a entropia do sinal — é o <strong>reconhecimento da estrutura</strong>.</p>
+<hr>
+<h2 id="4-as-medicoes-uma-a-uma-onde-o-bh-foi-superior-e-contra-que">4. As medições, uma a uma (onde o BH foi superior, e contra quê)</h2>
+<p>Cada teste real, com o ganho e <strong>o baseline rotulado</strong> — a honestidade visível:
+verde onde ganha vs estado da arte, cinza onde é âncora (mecanismo já-SOTA).</p>
+<p><img alt="Painel de evidências" src="pitch_assets/04_evidencias.png"></p>
+<pre><code>Dado gerado por regra → programa ... 800–3.572× menor que WebP (reconstrói exato)
+Conteúdo casado (gradiente) ........ 48× menor que WebP, com qualidade MAIOR
+Ler uma região (capacidade) ........ 3–55× menos bytes que o WebP
+Dado simbólico / composto .......... 384× menor + consultas que o denso nem formula
+Camadas co-registradas (vídeo) ..... 2,13× (estrutura + redundância compõem)
+Face de leitura (âncora) ........... 488–52.103× vs ingênuo — mas é OLAP/Merkle,
+                                     credibilidade, NÃO novidade
+</code></pre>
+<hr>
+<h2 id="a-leitura-dos-tres-graficos-junta">A leitura dos três gráficos, junta</h2>
+<ol>
+<li><strong>Gráfico 1</strong> mostra o QUÊ: uma estrutura que faz o que hoje exige quatro.</li>
+<li><strong>Gráfico 2</strong> mostra a PROVA: menor E navegável, no mesmo arquivo, vs SOTA.</li>
+<li><strong>Gráfico 3</strong> mostra a HONESTIDADE: onde rende (estrutura) e onde delega
+   (sinal) — a credibilidade que faz um engenheiro confiar.</li>
+</ol>
+<blockquote>
+<p>O valor não está no bloco comprimido. Está na estrutura que sabe o que
+aquele bloco significa.</p>
+</blockquote>
+<hr>
+<p><em>Gráficos gerados por <code>pitch_assets/generate_charts.py</code> a partir das medições
+reais do estudo (ver <code>BH_MASTER.md</code>). PNGs em <code>pitch_assets/</code>.</em></p></main>
+<div class="foot">Bits Hierárquicos · © 2025–2026 Márcio M. Carvalho ·
+código sob Apache-2.0, documentos sob CC BY 4.0 ·
+<a href="https://github.com/mmcarvalhodev/bits-hierarquicos">repositório</a></div>
+</body></html>

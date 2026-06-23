@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BH — Estudo (Master)</title>
+<style>
+:root { --accent: #2e7d32; --ink: #1b1f23; --muted: #57606a;
+        --line: #e1e4e8; --bg: #fff; --code-bg: #f6f8fa; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; color: var(--ink); background: var(--bg);
+       font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+       Helvetica, Arial, sans-serif; }
+.nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.92);
+       backdrop-filter: blur(6px); border-bottom: 1px solid var(--line); }
+.nav .in { max-width: 860px; margin: 0 auto; padding: 12px 24px; display: flex;
+           gap: 18px; align-items: center; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 14px;
+         font-weight: 500; }
+.nav a:hover, .nav a.active { color: var(--accent); }
+.nav .brand { color: var(--ink); font-weight: 700; margin-right: auto; }
+.nav .gh { border: 1px solid var(--line); padding: 4px 12px; border-radius: 6px; }
+main { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; margin: 1.6em 0 .6em; }
+h1 { font-size: 2em; margin-top: .2em; }
+h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid var(--line); }
+h3 { font-size: 1.2em; }
+a { color: var(--accent); }
+p, li { color: var(--ink); }
+blockquote { margin: 1em 0; padding: .4em 1.1em; border-left: 4px solid var(--accent);
+             background: #f3f8f4; color: #24433; border-radius: 0 6px 6px 0; }
+blockquote p { margin: .4em 0; }
+code { background: var(--code-bg); padding: .15em .4em; border-radius: 5px;
+       font: .88em/1.5 "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+pre { background: var(--code-bg); padding: 16px; border-radius: 8px; overflow: auto;
+      border: 1px solid var(--line); }
+pre code { background: none; padding: 0; font-size: .85em; }
+table { border-collapse: collapse; width: 100%; margin: 1.2em 0; font-size: .95em;
+        display: block; overflow-x: auto; }
+th, td { border: 1px solid var(--line); padding: 8px 12px; text-align: left; }
+th { background: var(--code-bg); font-weight: 600; }
+tr:nth-child(even) td { background: #fafbfc; }
+img { max-width: 100%; height: auto; border: 1px solid var(--line);
+      border-radius: 8px; margin: 1em 0; }
+hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+.foot { max-width: 860px; margin: 0 auto; padding: 24px; color: var(--muted);
+        font-size: 13px; border-top: 1px solid var(--line); }
+/* landing */
+.hero { padding: 56px 0 8px; }
+.hero .lead { font-size: 1.5em; font-weight: 600; line-height: 1.4; }
+.hero .sub { color: var(--muted); font-size: 1.05em; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+         gap: 16px; margin: 28px 0; }
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 20px;
+        text-decoration: none; color: var(--ink); transition: .15s;
+        display: block; }
+.card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,0,0,.06);
+              transform: translateY(-2px); }
+.card .t { font-weight: 700; font-size: 1.1em; color: var(--accent); }
+.card .d { color: var(--muted); font-size: .92em; margin-top: 6px; }
+.pill { display: inline-block; background: #f3f8f4; color: var(--accent);
+        border: 1px solid #cfe6d4; border-radius: 999px; padding: 2px 12px;
+        font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+</style>
+</head><body>
+<div class="nav"><div class="in"><a href="index.html" class="brand">Bits Hierárquicos</a><a href="index.html" class="">Início</a><a href="master.html" class="active">Estudo</a><a href="pitch.html" class="">Pitch</a><a href="visual.html" class="">Pitch Visual</a><a class="gh" href="https://github.com/mmcarvalhodev/bits-hierarquicos">GitHub ↗</a></div></div>
+<main><h1 id="bits-hierarquicos-estudo-e-demonstracao-tecnica">BITS HIERÁRQUICOS — ESTUDO E DEMONSTRAÇÃO TÉCNICA</h1>
+<h2 id="um-envelope-estrutural-que-orquestra-representacoes-metodo-medicoes-e-fronteiras">Um envelope estrutural que orquestra representações: método, medições e fronteiras</h2>
+<p><strong>Autor:</strong> Márcio M. Carvalho
+<strong>Período do estudo:</strong> Dezembro 2025 – Junho 2026
+<strong>Hardware de referência:</strong> NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
+<strong>Cobertura de testes:</strong> 128+ testes automatizados verdes, correção exata como portão antes de cada medição
+<strong>Natureza deste documento:</strong> relatório técnico de demonstração — cada afirmação é acompanhada do método e do número medido</p>
+<hr>
+<h2 id="sumario-executivo">SUMÁRIO EXECUTIVO</h2>
+<p>Bits Hierárquicos (BH) começou como uma hipótese de Dezembro de 2025 ("o byte
+é uma árvore implícita; hierarquia é interpretação"). Este estudo testou a
+hipótese em <strong>nove ângulos independentes</strong>, com medições reais e baselines
+honestos. O resultado não é "um codec melhor" — é a delimitação precisa de um
+paradigma:</p>
+<pre><code>O BH NÃO comprime sinal denso melhor que JPEG/WebP/AVIF (perde — medido).
+O BH É um ENVELOPE ESTRUTURAL que:
+   (a) torna a estrutura explícita a custo baixo (0–6% do arquivo — medido),
+   (b) roteia o resíduo de cada região ao especialista certo (orquestração),
+   (c) oferece múltiplas leituras sobre a mesma estrutura (preview/ROI/prova).
+</code></pre>
+<p><strong>Resultado-âncora (medido):</strong> um documento estruturado gravado no formato
+orquestrado é <strong>2,1× menor que o WebP E</strong> permite ler qualquer região por
+<strong>3–55× menos bytes</strong>, no mesmo arquivo — algo que nenhuma ferramenta SOTA
+oferece junto.</p>
+<p><strong>A lei transversal (medida em todos os ângulos):</strong> o BH rende exatamente na
+medida em que o dado é <strong>estrutura</strong> (gerado por regra, composto, hierárquico)
+e não <strong>sinal</strong> (ruído/perceptual). No limite, o payload vira um <em>programa</em> que
+gera o dado (ganhos de milhares×); a fronteira não é a entropia — é o
+reconhecimento da estrutura.</p>
+<hr>
+<h2 id="1-metodologia-o-que-torna-este-estudo-confiavel">1. METODOLOGIA (o que torna este estudo confiável)</h2>
+<p>Toda a investigação seguiu quatro regras, aplicadas sem exceção:</p>
+<p><strong>1.1 Declarar antes de medir.</strong> Cada terreno definiu alegações falsificáveis
+com critério de <strong>sucesso E de fracasso</strong> ANTES da medição. Nenhum número foi
+prometido a priori.</p>
+<p><strong>1.2 Correção como portão.</strong> Antes de qualquer comparação de desempenho, a
+correção exata foi verificada (reconstrução bit-a-bit, igualdade de agregados,
+prova criptográfica válida). Desempenho só se mede sobre resultado correto.</p>
+<p><strong>1.3 Baseline honesto, com a distinção vs-ingênuo / vs-SOTA.</strong> Números grandes
+contra baselines ingênuos (varredura completa, transmitir tudo) são marcados
+como tais e distinguidos de ganhos contra o estado da arte (WebP, HNSW, OLAP).</p>
+<p><strong>1.4 Medição real, autocorreção pública.</strong> Usou-se hardware real (RTX 3060,
+CUDA events, <code>nvidia-smi dmon</code>). Quando uma medição estava enviesada a favor da
+hipótese, foi corrigida em público. Três autocorreções materiais ocorreram e
+estão documentadas (§7) — elas são parte da evidência de rigor.</p>
+<hr>
+<h2 id="2-a-reformulacao-da-pergunta">2. A REFORMULAÇÃO DA PERGUNTA</h2>
+<p>A pergunta inicial — <strong>"o BH é um codec melhor?"</strong> — foi respondida, medição
+após medição, com <strong>não</strong>. A pergunta correta só emergiu no fim da investigação:
+<strong>"o BH é um orquestrador estrutural de representações?"</strong> — e a resposta é
+<strong>sim</strong>. A chave foi uma separação que resolve a confusão de metade do estudo:</p>
+<pre><code>PROBLEMA DO RESÍDUO  ≠  PROBLEMA DO PARADIGMA
+</code></pre>
+<p>Tentar comprimir o resíduo (sinal denso) é o problema dos codecs especialistas
+— e o BH perde nisso. O paradigma do BH é a estrutura, o pertencimento e as
+leituras. Separadas, cada metade tem veredicto honesto e oposto.</p>
+<hr>
+<h2 id="3-os-terrenos-testados-metodo-medicao">3. OS TERRENOS TESTADOS (método + medição)</h2>
+<h3 id="31-codec-de-imagem-o-bh-como-compressor-perde">3.1 Codec de imagem — o BH como compressor (perde)</h3>
+<p><strong>Método:</strong> codec quadtree com seleção de interpretação por nó
+(LEAF/RAMP/DCT), comparado contra PNG/JPEG/WebP em frames 4K, com PSNR casado.</p>
+<p><strong>Medições:</strong>
+- Conteúdo casado (gradiente, lossy): BH-rampa <strong>2,4 KB @ 57,9 dB</strong> vs WebP
+  <strong>116,7 KB @ 50,2 dB</strong> → <strong>48× menor, com qualidade maior</strong>.
+- Acesso (thumbnail de foto natural 4K): BH lê <strong>0,148 MB</strong> vs WebP 0,664 (4×),
+  JPEG 1,0 (7×), PNG 6,5 (44×).
+- Compressão de foto natural: <strong>perde</strong> (4–10× maior que o WebP).
+- v0.3 (interpretação DCT): trocar o critério de erro de L∞ para L2 destravou o
+  DCT e cortou 40–66%, mas <strong>não fechou o gap</strong> — falta entropy coding do resíduo.
+- Imagem heterogênea (BH-compressor puro): <strong>perde em todas as frações de foto
+  (10,75× a 0% de foto)</strong> — porque texto/UI explode a quadtree e o entropy
+  coding do WebP já torna as regiões fáceis baratas.</p>
+<p><strong>Conclusão do terreno:</strong> como compressor, o BH perde. O ganho de 48× no
+gradiente era um canto (conteúdo perfeitamente procedural), não a regra.</p>
+<h3 id="32-banco-de-dados-leitura-seletiva-por-agregacao">3.2 Banco de dados — leitura seletiva por agregação</h3>
+<p><strong>Método:</strong> árvore de agregação (min/max/sum/count por nó) sobre 1.000.000 de
+linhas; métrica = linhas lidas; baseline = varredura plana.</p>
+<p><strong>Medições:</strong></p>
+<table>
+<thead>
+<tr>
+<th>query</th>
+<th>BH lê</th>
+<th>plano lê</th>
+<th>ganho</th>
+<th>vs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SUM global</td>
+<td>0</td>
+<td>1.000.000</td>
+<td>∞</td>
+<td>ingênuo</td>
+</tr>
+<tr>
+<td>SUM range 10%</td>
+<td>1.564</td>
+<td>99.868</td>
+<td>64×</td>
+<td>ingênuo</td>
+</tr>
+<tr>
+<td>COUNT chave 2%</td>
+<td>2.048</td>
+<td>1.000.000</td>
+<td>488×</td>
+<td>ingênuo</td>
+</tr>
+<tr>
+<td>COUNT valor correlacionado &gt; p99</td>
+<td>92.736</td>
+<td>1.000.000</td>
+<td>11×</td>
+<td>ingênuo</td>
+</tr>
+<tr>
+<td>eixo errado / valor independente / pouco seletivo</td>
+<td>~10⁶</td>
+<td>10⁶</td>
+<td>1–2×</td>
+<td>fronteira</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Materialização de interpretação:</strong> filtro por região (não agregada) lia
+tudo (1×); com um contador por região no nó → leitura de raiz, <strong>0 linhas (∞)</strong>
+— ao custo de armazenamento que escala com a cardinalidade.</p>
+<p><strong>Honestidade:</strong> os ganhos são enormes vs varredura ingênua, mas o mecanismo
+(resumo pré-computado) já é estado da arte (zone-maps, OLAP, materialized views).</p>
+<h3 id="33-verificacao-merkle-prova-seletiva">3.3 Verificação / Merkle — prova seletiva</h3>
+<p><strong>Método:</strong> árvore de Merkle (SHA-256, domain separation) sobre 1.048.576
+itens; gate de correção cripto (prova válida verifica, forjada falha) antes de
+medir; métrica = bytes/nós.</p>
+<p><strong>Medições:</strong></p>
+<table>
+<thead>
+<tr>
+<th>tarefa</th>
+<th>BH lê</th>
+<th>baseline ingênuo</th>
+<th>ganho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>commitment de 1M itens</td>
+<td>32 B (1 hash)</td>
+<td>33,5 MB</td>
+<td>1.048.576×</td>
+</tr>
+<tr>
+<td>prova de pertença</td>
+<td>644 B (20 hashes)</td>
+<td>33,5 MB</td>
+<td>52.103×</td>
+</tr>
+<tr>
+<td>localizar adulteração</td>
+<td>40 nós</td>
+<td>1.048.576 re-hashes</td>
+<td>26.214×</td>
+</tr>
+</tbody>
+</table>
+<p>A prova cresce com <strong>log n</strong> (1k → 10 hashes; 1M → 20). Honestidade: é a
+construção padrão de Merkle (blockchain/git/CT); o estudo mostra a <strong>unificação</strong>
+com os outros terrenos, não inventa cripto.</p>
+<h3 id="34-wafer-multiplas-camadas-co-registradas-escala-filme">3.4 Wafer — múltiplas camadas co-registradas + escala (filme)</h3>
+<p><strong>Método:</strong> quadtree-união sobre camadas co-registradas (RGB+profundidade+
+segmentação); gate de reconstrução lossless por camada; medição de
+estrutura-partilhada vs K árvores independentes.</p>
+<p><strong>Medições:</strong>
+- União rígida: co-registrado <strong>1,12×</strong>; desalinhado <strong>0,32× (perde)</strong>;
+  foto+lum+seg <strong>0,67× (perde)</strong>.
+- Com camada derivada (luminância do RGB): <strong>0,78×</strong>.
+- Com base + refinamento local (não-união): <strong>1,12× (ganha)</strong> — a foto natural
+  passa de perda a ganho; verificado por reconstrução lossless.
+- <strong>Prova de escala (filme, 720 frames = 30s):</strong> independente 1,00× · temporal
+  (delta entre frames) 1,65× · wafer-still 1,12× · <strong>wafer+temporal 2,13×</strong>. A
+  fração-estrutura sobe de <strong>16,7% → 33,4%</strong> com o temporal — a estrutura só
+  passa a render quando a redundância esvazia o payload.</p>
+<h3 id="35-gpu-movimento-de-dados-face-de-leitura-em-silicio-real">3.5 GPU — movimento de dados (face de leitura, em silício real)</h3>
+<p><strong>Método:</strong> medição de movimento de dados (simulação) e tempo de parede real
+(CUDA events, RTX 3060), com a carga visível por <code>nvidia-smi dmon</code>.</p>
+<p><strong>Medições:</strong>
+- Simulação (bytes movidos, carga agregação/LOD/contexto): <strong>1.540× menos dados</strong>.
+- Teste real leve (1 GB em VRAM): redução total flat 2.991 µs vs BH 2,8 µs →
+  <strong>1.087×</strong>; agregação de range <strong>264×</strong>; banda flat <strong>342 GB/s</strong> (colada no
+  teto de 360 → genuinamente bandwidth-bound).
+- <strong>Teste pesado (carga real):</strong> 6.000 consultas, <strong>3,51 TB varridos</strong>, SM a
+  100% por 26 s. Diagnóstico de duas armadilhas: (a) meu kernel flat era
+  subótimo (134 GB/s = 37% do teto), inflando o número bruto (4.725×); (b) o
+  lado BH no piso de medição (ruído). <strong>Número honesto triangulado</strong> (tempo vs
+  flat-ideal E dados-movidos: 3,51 TB vs ~2 GB): <strong>~1.750×</strong>.</p>
+<p><strong>Extrapolação (banda publicada, NÃO medida):</strong> o ganho de lote é <strong>invariante
+de hardware</strong> (~1.755× da 3060 à B200 — algorítmico, ambos escalam com a banda);
+o ganho de consulta única <strong>encolhe</strong> em placas rápidas (992× → 45×), porque o
+piso de lançamento de kernel é fixo.</p>
+<p><strong>Modelo de hardware nativo (projeção rotulada, não medição):</strong> com o piso a
+nível de latência de memória (0,3 µs, físico) em vez de lançamento (2,8 µs,
+software): latência single <strong>9.747×</strong>, lote <strong>5.702×</strong> (build near-memory),
+energia <strong>~1.755× menos</strong> (∝ dados movidos — robusto, independe do valor pJ/B).</p>
+<p><strong>Honestidade:</strong> os números grandes são vs varredura ingênua; o mecanismo
+(agregado pré-computado) é técnica padrão (OLAP/materialized views). A GPU prova
+que a <strong>face de leitura</strong> é real e rápida em hardware; não é um produto isolado.</p>
+<h3 id="36-armazenamento-multimodal-de-ia-onde-o-bh-foi-testado-fora-de-casa">3.6 Armazenamento multimodal de IA — onde o BH foi testado fora de casa</h3>
+<p><strong>Método:</strong> substrato unificado (estrutura + embeddings) vs pilha costurada
+(storage + HNSW + cache + índice espacial), sobre ativo co-registrado.</p>
+<p><strong>Medições (storage, fatia 1):</strong></p>
+<table>
+<thead>
+<tr>
+<th>d (embedding)</th>
+<th>unificado vs costurado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>4,0× (ganha)</td>
+</tr>
+<tr>
+<td>128</td>
+<td>empate</td>
+</tr>
+<tr>
+<td>256</td>
+<td>0,86× (perde)</td>
+</tr>
+<tr>
+<td><strong>768–4096 (IA real)</strong></td>
+<td><strong>perde</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Autocorreção (embedding progressivo / Matryoshka):</strong> ao tratar o embedding
+como infraestrutura compressível (não payload irredutível) — prefixo no nó
+interno em vez de full-d — o veredicto <strong>move</strong>: d=256 → 1,06×, d=1024 → 1,02×,
+d=4096 → 1,00× (empata). O bulk (embedding de folha) é empate de Shannon; o
+ganho fica no índice.</p>
+<p><strong>Medições (acesso, fatia 2):</strong> preview 7,6× · agregado 3,2× · ROI 2,1× ·
+retrieval escopado estreito 1,4× · <strong>retrieval largo 0,23× (perde)</strong>.</p>
+<p><strong>Decomposição de dívida arquitetural (stack RAG real):</strong> a dívida eliminável
+é <strong>14–49%</strong> (borderline), <strong>dominada pela duplicação dos embeddings</strong> (payload
+denso), não pela estrutura. Conclusão: storage de IA densa não é o terreno do BH.</p>
+<h3 id="37-composicional-densidade-real-o-sinal-mais-forte-e-seu-limite">3.7 Composicional / densidade real — o sinal mais forte e seu limite</h3>
+<p><strong>Método (composicional):</strong> dado simbólico — conceitos como equações de
+primitivos partilhados — representado como envelope algébrico vs vetor denso.</p>
+<p><strong>Medição:</strong> <strong>384× menor</strong> (8 MB vs 3,07 GB para 1M conceitos), e responde
+consultas estruturais ("quais conceitos usam o primitivo X?") que o vetor denso
+<strong>não consegue formular</strong>.</p>
+<p><strong>Método (densidade real):</strong> dimensionalidade intrínseca de embeddings reais
+(modelo all-MiniLM-L6-v2, 6.000 palavras PT, PCA).</p>
+<p><strong>Medição:</strong> 90% da variância em <strong>160 de 384 dimensões</strong> (~2,4× compressível).
+<strong>Honestidade:</strong> isto é compressibilidade <em>linear</em> (já explorada por PCA/PQ/
+Matryoshka), <strong>não</strong> composicionalidade simbólica. O dado real de linguagem,
+na geometria do embedding, <strong>não</strong> é composicional-simbólico — é um subespaço
+de dimensão média. O 384× vale para dado <em>que é</em> composição; o quanto do mundo
+real é composicional permanece a aposta em aberto (do domínio simbólico).</p>
+<h3 id="38-decode-programa-payload-vira-programa-a-forma-profunda-da-lei">3.8 Decode-programa — payload vira programa (a forma profunda da lei)</h3>
+<p><strong>Método:</strong> o cabeçalho carrega o <em>programa</em> que gera a região (não o
+resultado); o decoder executa o programa. Teste de generalidade (várias
+famílias) + ruído + custo escondido.</p>
+<p><strong>Medições:</strong></p>
+<table>
+<thead>
+<tr>
+<th>família gerada por regra</th>
+<th>WebP</th>
+<th>programa</th>
+<th>ganho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>anéis</td>
+<td>37,8 KB</td>
+<td>13 B</td>
+<td>2.904×</td>
+</tr>
+<tr>
+<td>ondas</td>
+<td>46,4 KB</td>
+<td>13 B</td>
+<td>3.572×</td>
+</tr>
+<tr>
+<td>xadrez</td>
+<td>2,4 KB</td>
+<td>3 B</td>
+<td>809×</td>
+</tr>
+<tr>
+<td>gradiente</td>
+<td>2,1 KB</td>
+<td>1 B</td>
+<td>2.096×</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Sob ruído</strong> (base procedural + ruído α): o programa-aware <strong>mantém a vantagem
+da estrutura</strong> em todos os níveis de ruído (subtrai a base conhecida; o WebP-todo
+paga pela estrutura que não sabe separar). <strong>Custo escondido (declarado):</strong> o
+encoder precisa <strong>descobrir</strong> o programa — o problema inverso, trivial para
+família conhecida, <strong>indecidível em geral</strong> (complexidade de Kolmogorov é
+incomputável). A fronteira do BH não é a entropia do resíduo — é o
+<strong>reconhecimento da estrutura</strong>.</p>
+<h3 id="39-orquestracao-uniao-a-formulacao-que-ganha-pelo-motivo-certo">3.9 Orquestração + união — a formulação que ganha pelo motivo certo</h3>
+<p><strong>Método (orquestração):</strong> o BH roteia cada região ao especialista local
+(plano→constante, gradiente→fórmula, texto→PNG, foto→WebP), comparado contra
+um-codec-no-todo, em dois conteúdos.</p>
+<p><strong>Medições:</strong></p>
+<table>
+<thead>
+<tr>
+<th>conteúdo</th>
+<th>WebP-todo</th>
+<th>orquestrado</th>
+<th>resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>foto-pesado</td>
+<td>10,7 KB</td>
+<td>10,8 KB</td>
+<td>1,01× (empata)</td>
+</tr>
+<tr>
+<td><strong>documento (formas fechadas)</strong></td>
+<td>4,8 KB</td>
+<td><strong>2,2 KB</strong></td>
+<td><strong>2,1× menor</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Dividir em WebP por região (sem rotear paradigmas) <strong>perde</strong> (1,10×) — o ganho
+vem do roteamento cross-paradigma, não do corte.</p>
+<p><strong>Método (custo do envelope):</strong> decomposição dos bytes do BH em framing /
+estrutura explícita / resíduo. <strong>Medição:</strong> estrutura explícita = <strong>0–6% do
+total</strong> (3 imagens). O cabeçalho inteligente é barato; o caro era o resíduo
+(que agora se delega). <em>Responde a "pergunta matadora": tornar a estrutura
+explícita custa muito pouco.</em></p>
+<p><strong>Método (a união):</strong> documento gravado como <code>.bh</code>, medindo no mesmo arquivo as
+duas faces.</p>
+<p><strong>Medições:</strong>
+- Representação: <strong>2,3 KB vs 4,8 KB do WebP = 2,1× menor</strong>.
+- Leitura seletiva: ler 1 região custa plano 87 B · gradiente 96 B · texto
+  590 B · diagrama 1,8 KB — <strong>3 a 55× menos</strong> que o WebP, que precisa do arquivo
+  todo para qualquer região.</p>
+<pre><code>WebP/AVIF → resíduo ótimo, leitura ÚNICA
+PDF       → orquestra especialistas, mas lista plana, sem leitura seletiva
+OLAP/GPU  → leitura seletiva, mas não é formato de representação
+.bh       → as DUAS faces + hierarquia + pertencimento, num envelope só
+</code></pre>
+<hr>
+<h2 id="4-a-lei-transversal-medida-em-todos-os-angulos">4. A LEI TRANSVERSAL (medida em todos os ângulos)</h2>
+<pre><code>A hierarquia rende quando a ESTRUTURA domina o custo, não o SINAL denso.
+No limite: payload → PROGRAMA que gera o dado, na medida em que o dado é
+gerado por regra. A fronteira não é a entropia — é o reconhecimento da estrutura.
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>classe de dado</th>
+<th>resultado medido</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>procedural / fórmula</td>
+<td>programa minúsculo: 800–3.600× (decode-programa)</td>
+</tr>
+<tr>
+<td>composicional / simbólico</td>
+<td>envelope 384× menor + consultas que o denso não faz</td>
+</tr>
+<tr>
+<td>estruturado heterogêneo</td>
+<td>orquestração 2,1× + leitura seletiva 3–55×</td>
+</tr>
+<tr>
+<td>agregável / reusado</td>
+<td>leitura seletiva ∞–488× (banco), 1.750× (GPU)</td>
+</tr>
+<tr>
+<td>co-registrado + redundante</td>
+<td>wafer+temporal 2,13× (filme)</td>
+</tr>
+<tr>
+<td><strong>denso / perceptual (foto, áudio, embedding)</strong></td>
+<td><strong>perde ou empata — território do conexionismo</strong></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-a-tese-reorganizada-apoiada-na-evidencia">5. A TESE REORGANIZADA (apoiada na evidência)</h2>
+<p><strong>O BH não é um codec — é um orquestrador estrutural.</strong> Duas faces, medidas:</p>
+<ul>
+<li><strong>Face de leitura</strong> (resumo no nó → ler seletivamente é barato): GPU 1.750×,
+  banco ∞/488×, Merkle 52.000×, thumbnail/ROI 4–44×. Números enormes, mas o
+  mecanismo já é SOTA.</li>
+<li><strong>Face de representação</strong> (estrutura explícita + resíduo delegado):
+  orquestração 2,1× em documento. Número menor, mas <strong>vs o estado da arte</strong>, por
+  uma propriedade arquitetural.</li>
+</ul>
+<p><strong>A união</strong> das duas faces num envelope (2,1× menor E navegável) é o que nenhuma
+ferramenta SOTA entrega. <strong>O valor não está no bloco comprimido — está na
+estrutura que sabe o que aquele bloco significa.</strong></p>
+<p><strong>Três escalas onde o BH sobrevive ao escrutínio:</strong>
+1. formato estrutural (um ativo) · 2. orquestrador (ativo heterogêneo) ·
+3. substrato composicional (sistema simbólico). Raiz comum: estrutura &gt; sinal.</p>
+<hr>
+<h2 id="6-fronteiras-honestas-para-a-tese-nao-virar-fe">6. FRONTEIRAS HONESTAS (para a tese não virar fé)</h2>
+<pre><code>- &quot;Ganha pelo motivo certo&quot; ≠ &quot;achámos o produto&quot;. É validação científica; o
+  produto exige construção e adoção (engenharia, não benchmark).
+- O orquestrador compete com o PDF (incumbente), não com o WebP. Seu diferencial
+  — hierarquia + leituras múltiplas — é real mas não-provado como necessidade de mercado.
+- Os números grandes da face de leitura são vs INGÊNUO; vs SOTA, empatam. O
+  diferencial é a UNIÃO das faces, não um número isolado.
+- O decode-programa exige RECONHECER a estrutura (problema inverso): trivial para
+  família conhecida, indecidível em geral.
+- A casa do BH é dado ESTRUTURA-DOMINANTE; em sinal denso o conexionismo reina,
+  e o BH o DELEGA — não o enfrenta.
+- Um formato morre sem ecossistema. O caminho não é um `.bh` genérico a competir
+  com Parquet/PDF; é construí-lo nativo num domínio greenfield que já precisa dele.
+</code></pre>
+<hr>
+<h2 id="7-as-autocorrecoes-evidencia-de-rigor-nao-de-fraqueza">7. AS AUTOCORREÇÕES (evidência de rigor, não de fraqueza)</h2>
+<p>Três medições foram corrigidas em público quando se mostraram enviesadas:</p>
+<ol>
+<li><strong>GPU — kernel flat subótimo.</strong> O número bruto (4.725×) inflava por má
+   implementação do baseline; o número honesto triangulado é ~1.750×.</li>
+<li><strong>Multimodal — embedding tratado como payload irredutível.</strong> Corrigido com
+   representação progressiva (Matryoshka): o storage passou de "perde" a "empata".</li>
+<li><strong>Heterogêneo — hipótese "ganha em conteúdo misto".</strong> Refutada pelo número
+   (perde 10,75×); o ganho real exige roteamento por especialista (orquestração),
+   não BH-compressor puro.</li>
+</ol>
+<hr>
+<h2 id="8-trabalho-relacionado-situando-vs-o-estado-da-arte">8. TRABALHO RELACIONADO (situando vs o estado da arte)</h2>
+<p>O BH não inventa as técnicas que usa — ele as <strong>unifica</strong>. Cada capacidade
+isolada já existe e é madura; a contribuição é reuni-las num envelope
+estrutural único. Situamos aqui as quatro famílias de prior art.</p>
+<p><strong>Codecs adaptativos por bloco.</strong> O JPEG (Wallace, 1991) estabeleceu o modelo
+"transformada + quantização + entropy coding" com uma base global fixa (DCT).
+Codecs modernos — AV1/AOMedia (Chen et al., 2018), VVC, JPEG XL — fazem
+<em>mode decision</em> por bloco, escolhendo modos de predição/transformada por
+região. O BH-codec compete diretamente nisto e <strong>perde</strong> (§3.1): falta-lhe a
+maquinaria de entropy coding, e a seleção por região é o que o AV1 já faz. A
+diferença do BH não é compressão — é delegar a região ao especialista (§3.9).</p>
+<p><strong>Estruturas de leitura seletiva.</strong> A leitura "ler o resumo, não os dados" é
+a base de OLAP/data cubes (Gray et al., 1997), zone-maps e estatísticas por
+row-group do Apache Parquet, e <em>materialized views</em>. Os ganhos de §3.2 e §3.5
+(banco, GPU) são exatamente este mecanismo — enormes contra varredura ingênua,
+mas <strong>já estado da arte</strong>. Reconhecemo-los como âncora de credibilidade, não
+novidade.</p>
+<p><strong>Estruturas autenticadas.</strong> A face de verificação (§3.3) é a árvore de
+Merkle (Merkle, 1987), base de Git, Certificate Transparency (Laurie, 2014)
+e blockchains (Nakamoto, 2008). Não inventamos cripto; demonstramos que a
+prova-de-Merkle é a <em>mesma</em> leitura-por-objetivo-sobre-hierarquia dos outros
+terrenos.</p>
+<p><strong>Representação compacta e dado-como-programa.</strong> Para embeddings, a
+compressibilidade que §3.6/§3.7 exploram é Product Quantization (Jégou et al.,
+2011) e Matryoshka Representation Learning (Kusupati et al., 2022); a busca
+vetorial é HNSW (Malkov &amp; Yashunin, 2018). O "decode-programa" de §3.8 é a
+direção da complexidade de Kolmogorov (Kolmogorov, 1965; Li &amp; Vitányi) e tem
+precedente direto no PostScript (página-como-programa, Adobe) e na geração
+procedural. Formatos auto-descritivos (HDF5, Protocol Buffers, PDF/ISO 32000)
+provam que "dado que carrega a própria estrutura" funciona.</p>
+<p><strong>A lacuna que o BH ocupa.</strong> Nenhum destes unifica representação + leitura
+seletiva + orquestração de especialistas + hierarquia/pertencimento + provas
+num único envelope. PDF orquestra mas é lista plana sem leitura seletiva; OLAP
+navega mas não é formato de representação; AV1 adapta por bloco mas com uma
+família de modos só. A contribuição do BH é a <strong>união</strong>, não os componentes.</p>
+<hr>
+<h2 id="9-reproducao">9. REPRODUÇÃO</h2>
+<pre><code>codec     X:\bitH\           py -m pytest tests -q   ·  src/bench/{harness,headtohead,portfolio,
+                              heterogeneous,cost_envelope,orchestrate,union}.py
+banco     X:\bitH\db\        py -m pytest tests -q   ·  src/bench/harness.py
+merkle    X:\bitH\merkle\    py -m pytest tests -q   ·  src/bench/harness.py
+wafer     X:\bitH\wafer\     py -m pytest tests -q   ·  src/bench/{harness,film}.py
+gpu       X:\bitH\gpu\       py -m pytest tests -q   ·  src/bench/{real_gpu,heavy_gpu,extrapolate,native_model}.py
+multimodal X:\bitH\multimodal\  src/{probe,fatia2,probe_progressive}.py
+composic.  X:\bitH\compositional\  {probe_compositional,real_density,decode_program,program_test}.py
+dívida     X:\bitH\architecture_debt\  debt_decomposition.py
+
+Python: X:/miniconda3/python.exe  (NumPy, Pillow, hashlib, CuPy/CUDA, sentence-transformers, sklearn)
+Relatórios brutos por terreno: RESULTS_*.md em cada pasta.
+</code></pre>
+<hr>
+<h2 id="10-conclusao">10. CONCLUSÃO</h2>
+<p>O estudo testou Bits Hierárquicos em nove ângulos independentes, com método
+declarado, correção como portão, baselines honestos e autocorreção pública. O
+veredicto:</p>
+<blockquote>
+<p>O BH não é um codec melhor — é uma forma diferente de <strong>organizar e ler
+dados estruturados</strong>. Onde o dado é estrutura (gerado por regra, composto,
+hierárquico, agregável, co-registrado), o ganho é real e por vezes de ordens
+de grandeza, e a sua forma mais profunda é o payload virar o <em>programa</em> que
+gera o dado. Onde o dado é sinal denso (foto, áudio, embedding), o
+conexionismo reina, e o papel do BH é <strong>delegar</strong> ao especialista — não
+competir. A contribuição única não é um número isolado; é a <strong>união</strong>, num
+envelope só, de representação enxuta, leitura seletiva, hierarquia e
+pertencimento — que nenhuma ferramenta atual oferece junta.</p>
+</blockquote>
+<p>A prova final não é mais um benchmark; é a construção do formato num domínio
+onde estrutura e pertencimento importam tanto quanto o tamanho.</p>
+<h3 id="da-tese-ao-artefato-bhmem">Da tese ao artefato — <code>bhmem</code></h3>
+<p>O primeiro passo dessa construção está feito: <strong><code>bhmem</code></strong>, um envelope <code>.bh</code>
+usável para <strong>memória de agente</strong> (<code>bhmem/</code>, biblioteca Python + testes). O
+agente grava memórias estruturadas (fato/evento/relação + tempo + tópico +
+proveniência) e o formato as expõe pelas múltiplas leituras — cada uma lendo
+só a fração que pede, medida em bytes reais lidos do arquivo:</p>
+<table>
+<thead>
+<tr>
+<th>leitura</th>
+<th>o que devolve</th>
+<th>bytes lidos</th>
+<th>vs store plano (lê tudo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary()</code></td>
+<td>resumo de todos os tópicos</td>
+<td>2,5%</td>
+<td><strong>36× menos</strong></td>
+</tr>
+<tr>
+<td><code>recall(tópico)</code></td>
+<td>as memórias de um ramo</td>
+<td>4,0%</td>
+<td><strong>22× menos</strong></td>
+</tr>
+<tr>
+<td><code>since(t)</code></td>
+<td>memórias da janela temporal</td>
+<td>9,8%</td>
+<td><strong>9× menos</strong></td>
+</tr>
+<tr>
+<td><code>provenance(id)</code></td>
+<td>fonte+caminho de 1 memória</td>
+<td>10,8%</td>
+<td><strong>8× menos</strong></td>
+</tr>
+<tr>
+<td><code>full()</code></td>
+<td>tudo (linha de base)</td>
+<td>100%</td>
+<td>1×</td>
+</tr>
+</tbody>
+</table>
+<p><em>(Demo: agente de ~90 dias, 60 tópicos, 2 250 memórias; 9/9 testes verdes.)</em></p>
+<p>Isto não é mais um ângulo medido — é a tese virando ferramenta. Encarna as
+duas faces do estudo: a <strong>capacidade</strong> (ler só o que precisa é propriedade do
+formato, não de um dataset) e a <strong>fronteira honesta</strong> (recall semântico denso
+delega a um índice vetorial que o envelope referencia; o BH convoca o
+especialista, não compete). O ganho <strong>escala com o número de ramos</strong> — a mesma
+lei transversal da §4. Ver <code>bhmem/README.md</code>.</p>
+<hr>
+<p><em>"O valor não está no bloco comprimido. Está na estrutura que sabe o que aquele
+bloco significa."</em></p></main>
+<div class="foot">Bits Hierárquicos · © 2025–2026 Márcio M. Carvalho ·
+código sob Apache-2.0, documentos sob CC BY 4.0 ·
+<a href="https://github.com/mmcarvalhodev/bits-hierarquicos">repositório</a></div>
+</body></html>
