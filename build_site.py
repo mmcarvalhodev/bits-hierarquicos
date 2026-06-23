@@ -14,7 +14,7 @@ import markdown
 
 ROOT = Path(__file__).resolve().parent
 ACCENT = "#2e7d32"
-GH = "https://github.com/mmcarvalhodev/bits-hierarquicos"
+GH = "https://github.com/mmcarvalhodev/hierarchical-bits"
 
 # páginas: chave -> {lang: (md, título da aba)}
 PAGES = {

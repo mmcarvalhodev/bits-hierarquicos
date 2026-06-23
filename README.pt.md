@@ -5,7 +5,7 @@
 > **Um envelope estrutural: representa um ativo heterogêneo, navega por partes
 > dele sem carregar tudo, e delega cada região ao melhor formato especialista.**
 
-📄 **Leia online (site bilíngue):** https://mmcarvalhodev.github.io/bits-hierarquicos/
+📄 **Leia online (site bilíngue):** https://mmcarvalhodev.github.io/hierarchical-bits/
 
 A maioria dos formatos te obriga a escolher **um**: *compacto* (JPEG/WebP — mas
 para ver um pedaço, decodifica tudo) **ou** *navegável* (índices, OLAP, vector

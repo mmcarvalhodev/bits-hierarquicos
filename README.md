@@ -6,7 +6,7 @@
 > of it without loading everything, and delegates each region to the best
 > specialist format.**
 
-📄 **Read online (bilingual site):** https://mmcarvalhodev.github.io/bits-hierarquicos/
+📄 **Read online (bilingual site):** https://mmcarvalhodev.github.io/hierarchical-bits/
 
 Most formats force you to pick **one**: *compact* (JPEG/WebP — but to see one
 piece, you decode all of it) **or** *navigable* (indexes, OLAP, vector DB — but
