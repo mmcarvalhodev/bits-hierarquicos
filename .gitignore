@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Artefatos gerados (regeneráveis pelos scripts/demos)
+*.bh
+*.jsonl
+*.db
+*.sqlite
+embeddings/cache.db
+**/agent_memory.*
+
+# Saídas de imagem geradas (os PNGs do pitch são versionados; descomentar p/ ignorar)
+# pitch_assets/*.png
+
+# SO / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
