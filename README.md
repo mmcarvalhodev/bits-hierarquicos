@@ -1,5 +1,7 @@
 **English** · [Português](README.pt.md)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20821058.svg)](https://doi.org/10.5281/zenodo.20821058)
+
 # Hierarchical Bits (BH)
 
 > **A structural envelope: it represents a heterogeneous asset, navigates parts

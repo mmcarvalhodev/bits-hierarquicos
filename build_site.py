@@ -15,6 +15,9 @@ import markdown
 ROOT = Path(__file__).resolve().parent
 ACCENT = "#2e7d32"
 GH = "https://github.com/mmcarvalhodev/hierarchical-bits"
+DOI = "10.5281/zenodo.20821058"  # concept DOI (always points to the latest version)
+DOI_URL = f"https://doi.org/{DOI}"
+DOI_BADGE = f"https://zenodo.org/badge/DOI/{DOI}.svg"
 
 # páginas: chave -> {lang: (md, título da aba)}
 PAGES = {
@@ -102,6 +105,15 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 .pill { display: inline-block; background: #f3f8f4; color: var(--accent);
         border: 1px solid #cfe6d4; border-radius: 999px; padding: 2px 12px;
         font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+.nav .doi { border: 1px solid #1565c0; color: #1565c0; padding: 3px 10px;
+            border-radius: 6px; font-weight: 700; }
+.nav .doi:hover { background: #1565c0; color: #fff; }
+.doi-badge { border: 0 !important; border-radius: 0 !important; margin: 12px 0 0 !important; }
+.cite { margin-top: 34px; padding: 16px 18px; background: #f6f8fa;
+        border: 1px solid var(--line); border-radius: 10px; font-size: .92em; }
+.cite .h { font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.cite code { display: block; white-space: pre-wrap; background: #fff; padding: 10px;
+             border-radius: 6px; border: 1px solid var(--line); margin-top: 8px; }
 """  % {"accent": ACCENT}
 
 
@@ -126,6 +138,7 @@ def nav(active_key: str, lang: str) -> str:
         f'<a href="{slug("home", lang)}" class="brand">{brand}</a>'
         f'{links}'
         f'<a class="lang" href="{lang_link}" title="Switch language">{ui["lang_other"]}</a>'
+        f'<a class="doi" href="{DOI_URL}" title="Zenodo DOI">DOI</a>'
         f'<a class="gh" href="{GH}">{ui["repo"]}</a>'
         '</div></div>'
     )
@@ -241,11 +254,22 @@ def build_index() -> None:
         cards = "".join(
             f'<a class="card" href="{href}"><div class="t">{t} →</div>'
             f'<div class="d">{d}</div></a>' for href, t, d in L["cards"])
+        cite_label = "Cite this work" if lang == "en" else "Como citar"
+        published_in = "published as a technical note on Zenodo" if lang == "en" \
+            else "publicado como nota técnica no Zenodo"
+        cite_html = (
+            f'<div class="cite"><div class="h">{cite_label}</div>'
+            f'Carvalho, Márcio M. (2026). <i>Hierarchical Bits: A Structural Envelope '
+            f'for Orchestrating Representations — Method, Measurements and Boundaries</i> '
+            f'({published_in}). '
+            f'<a href="{DOI_URL}">https://doi.org/{DOI}</a>.'
+            f'<code>DOI: {DOI}</code></div>')
         body = f"""
 <div class="hero">
   <div class="pill">{L['pill']}</div>
   <div class="lead">{L['lead']}</div>
   <p class="sub">{L['sub']}</p>
+  <a href="{DOI_URL}"><img class="doi-badge" src="{DOI_BADGE}" alt="DOI {DOI}"></a>
 </div>
 <h2 style="border:0">{L['cap_h']}</h2>
 <p>{L['cap_p']}</p>
@@ -253,6 +277,7 @@ def build_index() -> None:
 <tbody>{rows}</tbody></table>
 <div class="cards">{cards}</div>
 <blockquote>{L['quote']}</blockquote>
+{cite_html}
 """
         (ROOT / slug("home", lang)).write_text(
             page(L["title"], "home", lang, body), encoding="utf-8")

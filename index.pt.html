@@ -60,14 +60,24 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 .pill { display: inline-block; background: #f3f8f4; color: var(--accent);
         border: 1px solid #cfe6d4; border-radius: 999px; padding: 2px 12px;
         font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+.nav .doi { border: 1px solid #1565c0; color: #1565c0; padding: 3px 10px;
+            border-radius: 6px; font-weight: 700; }
+.nav .doi:hover { background: #1565c0; color: #fff; }
+.doi-badge { border: 0 !important; border-radius: 0 !important; margin: 12px 0 0 !important; }
+.cite { margin-top: 34px; padding: 16px 18px; background: #f6f8fa;
+        border: 1px solid var(--line); border-radius: 10px; font-size: .92em; }
+.cite .h { font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.cite code { display: block; white-space: pre-wrap; background: #fff; padding: 10px;
+             border-radius: 6px; border: 1px solid var(--line); margin-top: 8px; }
 </style>
 </head><body>
-<div class="nav"><div class="in"><a href="index.pt.html" class="brand">Bits Hierárquicos</a><a href="index.pt.html" class="active">Início</a><a href="master.pt.html" class="">Estudo</a><a href="pitch.pt.html" class="">Pitch</a><a href="visual.pt.html" class="">Pitch Visual</a><a class="lang" href="index.html" title="Switch language">EN</a><a class="gh" href="https://github.com/mmcarvalhodev/hierarchical-bits">GitHub ↗</a></div></div>
+<div class="nav"><div class="in"><a href="index.pt.html" class="brand">Bits Hierárquicos</a><a href="index.pt.html" class="active">Início</a><a href="master.pt.html" class="">Estudo</a><a href="pitch.pt.html" class="">Pitch</a><a href="visual.pt.html" class="">Pitch Visual</a><a class="lang" href="index.html" title="Switch language">EN</a><a class="doi" href="https://doi.org/10.5281/zenodo.20821058" title="Zenodo DOI">DOI</a><a class="gh" href="https://github.com/mmcarvalhodev/hierarchical-bits">GitHub ↗</a></div></div>
 <main>
 <div class="hero">
   <div class="pill">Estudo medido · protótipo usável · código aberto</div>
   <div class="lead">Um <b>envelope estrutural</b>: representa um ativo heterogêneo, navega por partes dele sem carregar tudo, e delega cada região ao melhor formato especialista.</div>
   <p class="sub">A maioria dos formatos te obriga a escolher <i>um</i>: compacto (mas para ver um pedaço, decodifica tudo) ou navegável (mas é estrutura colada por cima, em vários sistemas). O BH é compacto <b>e</b> navegável, num arquivo só.</p>
+  <a href="https://doi.org/10.5281/zenodo.20821058"><img class="doi-badge" src="https://zenodo.org/badge/DOI/10.5281/zenodo.20821058.svg" alt="DOI 10.5281/zenodo.20821058"></a>
 </div>
 <h2 style="border:0">A capacidade central — não um benchmark</h2>
 <p>O coração do BH não é "ser menor". É <b>ler só a parte que você precisa</b>. O protótipo <code>bhmem</code> (memória de agente) mede isso em bytes reais:</p>
@@ -75,6 +85,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 <tbody><tr><td><code>summary()</code> — resumo de todos os tópicos</td><td>2,5%</td><td><b>35× menos</b></td></tr><tr><td><code>recall(tópico)</code> — um ramo</td><td>4,0%</td><td><b>22× menos</b></td></tr><tr><td><code>since(t)</code> — janela temporal</td><td>9,8%</td><td><b>9× menos</b></td></tr><tr><td><code>provenance(id)</code> — fonte de 1 memória</td><td>10,8%</td><td><b>8× menos</b></td></tr></tbody></table>
 <div class="cards"><a class="card" href="master.pt.html"><div class="t">O Estudo (Master) →</div><div class="d">9 ângulos testados, método declarado, baselines honestos, autocorreções públicas, Related Work. Pronto para Zenodo.</div></a><a class="card" href="pitch.pt.html"><div class="t">Pitch — Apresentação →</div><div class="d">7 slides. Lidera com a capacidade central: ler só o que precisa.</div></a><a class="card" href="visual.pt.html"><div class="t">Pitch — Visual →</div><div class="d">4 gráficos comparativos + o painel de evidências (com baseline rotulado).</div></a><a class="card" href="https://github.com/mmcarvalhodev/hierarchical-bits"><div class="t">Código no GitHub →</div><div class="d">O protótipo bhmem (memória de agente em .bh), os terrenos testados, e como reproduzir tudo.</div></a></div>
 <blockquote>O valor não está no bloco comprimido. Está na estrutura que sabe o que aquele bloco significa.</blockquote>
+<div class="cite"><div class="h">Como citar</div>Carvalho, Márcio M. (2026). <i>Hierarchical Bits: A Structural Envelope for Orchestrating Representations — Method, Measurements and Boundaries</i> (publicado como nota técnica no Zenodo). <a href="https://doi.org/10.5281/zenodo.20821058">https://doi.org/10.5281/zenodo.20821058</a>.<code>DOI: 10.5281/zenodo.20821058</code></div>
 </main>
 <div class="foot">Bits Hierárquicos · © 2025–2026 Márcio M. Carvalho · código sob Apache-2.0, documentos sob CC BY 4.0 · <a href="https://github.com/mmcarvalhodev/hierarchical-bits">repositório</a></div>
 </body></html>

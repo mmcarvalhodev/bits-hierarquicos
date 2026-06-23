@@ -60,14 +60,24 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 .pill { display: inline-block; background: #f3f8f4; color: var(--accent);
         border: 1px solid #cfe6d4; border-radius: 999px; padding: 2px 12px;
         font-size: 13px; font-weight: 600; margin-bottom: 18px; }
+.nav .doi { border: 1px solid #1565c0; color: #1565c0; padding: 3px 10px;
+            border-radius: 6px; font-weight: 700; }
+.nav .doi:hover { background: #1565c0; color: #fff; }
+.doi-badge { border: 0 !important; border-radius: 0 !important; margin: 12px 0 0 !important; }
+.cite { margin-top: 34px; padding: 16px 18px; background: #f6f8fa;
+        border: 1px solid var(--line); border-radius: 10px; font-size: .92em; }
+.cite .h { font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.cite code { display: block; white-space: pre-wrap; background: #fff; padding: 10px;
+             border-radius: 6px; border: 1px solid var(--line); margin-top: 8px; }
 </style>
 </head><body>
-<div class="nav"><div class="in"><a href="index.html" class="brand">Hierarchical Bits</a><a href="index.html" class="active">Home</a><a href="master.html" class="">Study</a><a href="pitch.html" class="">Pitch</a><a href="visual.html" class="">Visual Pitch</a><a class="lang" href="index.pt.html" title="Switch language">PT</a><a class="gh" href="https://github.com/mmcarvalhodev/hierarchical-bits">GitHub ↗</a></div></div>
+<div class="nav"><div class="in"><a href="index.html" class="brand">Hierarchical Bits</a><a href="index.html" class="active">Home</a><a href="master.html" class="">Study</a><a href="pitch.html" class="">Pitch</a><a href="visual.html" class="">Visual Pitch</a><a class="lang" href="index.pt.html" title="Switch language">PT</a><a class="doi" href="https://doi.org/10.5281/zenodo.20821058" title="Zenodo DOI">DOI</a><a class="gh" href="https://github.com/mmcarvalhodev/hierarchical-bits">GitHub ↗</a></div></div>
 <main>
 <div class="hero">
   <div class="pill">Measured study · usable prototype · open source</div>
   <div class="lead">A <b>structural envelope</b>: it represents a heterogeneous asset, navigates parts of it without loading everything, and delegates each region to the best specialist format.</div>
   <p class="sub">Most formats force you to pick <i>one</i>: compact (but to see one piece, decode all of it) or navigable (but structure bolted on top, across several systems). BH is compact <b>and</b> navigable, in a single file.</p>
+  <a href="https://doi.org/10.5281/zenodo.20821058"><img class="doi-badge" src="https://zenodo.org/badge/DOI/10.5281/zenodo.20821058.svg" alt="DOI 10.5281/zenodo.20821058"></a>
 </div>
 <h2 style="border:0">The core capability — not a benchmark</h2>
 <p>The heart of BH is not "being smaller". It's <b>reading only the part you need</b>. The <code>bhmem</code> prototype (agent memory) measures it in real bytes:</p>
@@ -75,6 +85,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 <tbody><tr><td><code>summary()</code> — digest of all topics</td><td>2.5%</td><td><b>35× less</b></td></tr><tr><td><code>recall(topic)</code> — one branch</td><td>4.0%</td><td><b>22× less</b></td></tr><tr><td><code>since(t)</code> — time window</td><td>9.8%</td><td><b>9× less</b></td></tr><tr><td><code>provenance(id)</code> — source of 1 memory</td><td>10.8%</td><td><b>8× less</b></td></tr></tbody></table>
 <div class="cards"><a class="card" href="master.html"><div class="t">The Study (Master) →</div><div class="d">9 angles tested, declared method, honest baselines, public self-corrections, Related Work. Zenodo-ready.</div></a><a class="card" href="pitch.html"><div class="t">Pitch — Presentation →</div><div class="d">7 slides. Leads with the core capability: read only what you need.</div></a><a class="card" href="visual.html"><div class="t">Pitch — Visual →</div><div class="d">4 comparative charts + the evidence panel (with the baseline labeled).</div></a><a class="card" href="https://github.com/mmcarvalhodev/hierarchical-bits"><div class="t">Code on GitHub →</div><div class="d">The bhmem prototype (agent memory as .bh), the terrains tested, and how to reproduce everything.</div></a></div>
 <blockquote>The value isn't in the compressed block. It's in the structure that knows what that block means.</blockquote>
+<div class="cite"><div class="h">Cite this work</div>Carvalho, Márcio M. (2026). <i>Hierarchical Bits: A Structural Envelope for Orchestrating Representations — Method, Measurements and Boundaries</i> (published as a technical note on Zenodo). <a href="https://doi.org/10.5281/zenodo.20821058">https://doi.org/10.5281/zenodo.20821058</a>.<code>DOI: 10.5281/zenodo.20821058</code></div>
 </main>
 <div class="foot">Hierarchical Bits · © 2025–2026 Márcio M. Carvalho · code under Apache-2.0, docs under CC BY 4.0 · <a href="https://github.com/mmcarvalhodev/hierarchical-bits">repository</a></div>
 </body></html>
