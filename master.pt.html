@@ -78,7 +78,8 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 <strong>Período do estudo:</strong> Dezembro 2025 – Junho 2026
 <strong>Hardware de referência:</strong> NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 <strong>Cobertura de testes:</strong> 128+ testes automatizados verdes, correção exata como portão antes de cada medição
-<strong>Natureza deste documento:</strong> relatório técnico de demonstração — cada afirmação é acompanhada do método e do número medido</p>
+<strong>Natureza deste documento:</strong> relatório técnico de demonstração — cada afirmação é acompanhada do método e do número medido
+<strong>Revisão:</strong> v2 (Junho 2026) — adiciona três protótipos usáveis (memória de agente, observabilidade, checkpoints de modelo) na §10</p>
 <hr>
 <h2 id="sumario-executivo">SUMÁRIO EXECUTIVO</h2>
 <p>Bits Hierárquicos (BH) começou como uma hipótese de Dezembro de 2025 ("o byte
@@ -582,12 +583,14 @@ pertencimento — que nenhuma ferramenta atual oferece junta.</p>
 </blockquote>
 <p>A prova final não é mais um benchmark; é a construção do formato num domínio
 onde estrutura e pertencimento importam tanto quanto o tamanho.</p>
-<h3 id="da-tese-ao-artefato-bhmem">Da tese ao artefato — <code>bhmem</code></h3>
-<p>O primeiro passo dessa construção está feito: <strong><code>bhmem</code></strong>, um envelope <code>.bh</code>
-usável para <strong>memória de agente</strong> (<code>bhmem/</code>, biblioteca Python + testes). O
-agente grava memórias estruturadas (fato/evento/relação + tempo + tópico +
-proveniência) e o formato as expõe pelas múltiplas leituras — cada uma lendo
-só a fração que pede, medida em bytes reais lidos do arquivo:</p>
+<h3 id="da-tese-aos-artefatos-tres-prototipos-usaveis">Da tese aos artefatos — três protótipos usáveis</h3>
+<p>A construção já não é um passo, mas três, e todos partilham <strong>um envelope</strong> —
+prova de que o paradigma generaliza entre domínios. Cada um é uma biblioteca
+Python com demo medida e testes; cada um lê só a fração que a consulta pede, em
+bytes reais lidos do arquivo.</p>
+<p><strong><code>bhmem</code> — memória de agente.</strong> O agente grava memórias estruturadas
+(fato/evento/relação + tempo + tópico + proveniência); o formato as expõe pelas
+múltiplas leituras.</p>
 <table>
 <thead>
 <tr>
@@ -622,21 +625,78 @@ só a fração que pede, medida em bytes reais lidos do arquivo:</p>
 <td>10,8%</td>
 <td><strong>8× menos</strong></td>
 </tr>
+</tbody>
+</table>
+<p><em>(Demo: ~90 dias, 60 tópicos, 2 250 memórias; 9/9 testes verdes.)</em></p>
+<p><strong><code>bhtrace</code> — traces distribuídos (observabilidade).</strong> Um trace é uma árvore
+(trace → spans → eventos); a estrutura é o índice, os atributos pesados (SQL,
+stack traces, headers) são o resíduo.</p>
+<table>
+<thead>
 <tr>
-<td><code>full()</code></td>
-<td>tudo (linha de base)</td>
-<td>100%</td>
-<td>1×</td>
+<th>leitura</th>
+<th>o que devolve</th>
+<th>vs store plano</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary()</code> / <code>critical_path()</code></td>
+<td>o esqueleto sem o payload</td>
+<td><strong>9× menos</strong></td>
+</tr>
+<tr>
+<td><code>subtree(span)</code></td>
+<td>um drill-in</td>
+<td><strong>9× menos</strong></td>
+</tr>
+<tr>
+<td><code>service(name)</code></td>
+<td>um serviço</td>
+<td><strong>5× menos</strong></td>
 </tr>
 </tbody>
 </table>
-<p><em>(Demo: agente de ~90 dias, 60 tópicos, 2 250 memórias; 9/9 testes verdes.)</em></p>
-<p>Isto não é mais um ângulo medido — é a tese virando ferramenta. Encarna as
-duas faces do estudo: a <strong>capacidade</strong> (ler só o que precisa é propriedade do
-formato, não de um dataset) e a <strong>fronteira honesta</strong> (recall semântico denso
-delega a um índice vetorial que o envelope referencia; o BH convoca o
-especialista, não compete). O ganho <strong>escala com o número de ramos</strong> — a mesma
-lei transversal da §4. Ver <code>bhmem/README.md</code>.</p>
+<p><em>(Demo: trace de checkout com 269 spans, pesado em atributos; 9/9 testes verdes.)</em></p>
+<p><strong><code>bhckpt</code> — checkpoints de modelo.</strong> Um checkpoint é uma hierarquia
+(modelo → camadas → tensores → experts); os pesos dominam, a estrutura é minúscula.</p>
+<table>
+<thead>
+<tr>
+<th>leitura</th>
+<th>o que devolve</th>
+<th>vs checkpoint plano</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary()</code></td>
+<td>arquitetura de um modelo de 16 MB lida em 9 KB, sem pesos</td>
+<td><strong>1 779× menos</strong></td>
+</tr>
+<tr>
+<td><code>expert(i, e)</code></td>
+<td>carregar um expert MoE sem a mistura</td>
+<td><strong>20× menos</strong></td>
+</tr>
+<tr>
+<td><code>layer(i)</code> / <code>tensor(name)</code></td>
+<td>uma camada / um tensor</td>
+<td><strong>12× / 10× menos</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Demo: transformer de 4 camadas, 2 camadas MoE × 6 experts, 16,2 MB; 8/8 testes verdes.)</em></p>
+<p><strong>Fronteira honesta, a mesma nos três:</strong> o BH ganha no acesso estrutural e
+<strong>delega</strong> o resíduo denso (busca full-text → índice invertido; quantização
+por-tensor → o seu especialista; recall semântico denso → um índice vetorial).
+No <code>bhckpt</code>, a leitura seletiva por-tensor já existe (<code>safetensors</code>) — essa é a
+<em>âncora</em>; o novo é a <em>união</em> (hierarquia incluindo o expert MoE como leitura de
+1ª classe, roteamento por-tensor, uma face Merkle para proveniência).</p>
+<p>Isto não são mais ângulos medidos — é a tese virando ferramentas, o <strong>mesmo
+envelope provado em três domínios</strong>. O ganho escala com o quanto o dado é
+estrutura-dominante — a lei transversal da §4. Ver os READMEs (<code>bhmem/</code>,
+<code>bhtrace/</code>, <code>bhckpt/</code>).</p>
 <hr>
 <p><em>"O valor não está no bloco comprimido. Está na estrutura que sabe o que aquele
 bloco significa."</em></p></main>

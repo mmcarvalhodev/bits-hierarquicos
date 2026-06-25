@@ -6,6 +6,7 @@
 **Hardware de referência:** NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 **Cobertura de testes:** 128+ testes automatizados verdes, correção exata como portão antes de cada medição
 **Natureza deste documento:** relatório técnico de demonstração — cada afirmação é acompanhada do método e do número medido
+**Revisão:** v2 (Junho 2026) — adiciona três protótipos usáveis (memória de agente, observabilidade, checkpoints de modelo) na §10
 
 ---
 
@@ -451,13 +452,16 @@ veredicto:
 A prova final não é mais um benchmark; é a construção do formato num domínio
 onde estrutura e pertencimento importam tanto quanto o tamanho.
 
-### Da tese ao artefato — `bhmem`
+### Da tese aos artefatos — três protótipos usáveis
 
-O primeiro passo dessa construção está feito: **`bhmem`**, um envelope `.bh`
-usável para **memória de agente** (`bhmem/`, biblioteca Python + testes). O
-agente grava memórias estruturadas (fato/evento/relação + tempo + tópico +
-proveniência) e o formato as expõe pelas múltiplas leituras — cada uma lendo
-só a fração que pede, medida em bytes reais lidos do arquivo:
+A construção já não é um passo, mas três, e todos partilham **um envelope** —
+prova de que o paradigma generaliza entre domínios. Cada um é uma biblioteca
+Python com demo medida e testes; cada um lê só a fração que a consulta pede, em
+bytes reais lidos do arquivo.
+
+**`bhmem` — memória de agente.** O agente grava memórias estruturadas
+(fato/evento/relação + tempo + tópico + proveniência); o formato as expõe pelas
+múltiplas leituras.
 
 | leitura | o que devolve | bytes lidos | vs store plano (lê tudo) |
 |---|---|---|---|
@@ -465,16 +469,43 @@ só a fração que pede, medida em bytes reais lidos do arquivo:
 | `recall(tópico)` | as memórias de um ramo | 4,0% | **22× menos** |
 | `since(t)` | memórias da janela temporal | 9,8% | **9× menos** |
 | `provenance(id)` | fonte+caminho de 1 memória | 10,8% | **8× menos** |
-| `full()` | tudo (linha de base) | 100% | 1× |
 
-*(Demo: agente de ~90 dias, 60 tópicos, 2 250 memórias; 9/9 testes verdes.)*
+*(Demo: ~90 dias, 60 tópicos, 2 250 memórias; 9/9 testes verdes.)*
 
-Isto não é mais um ângulo medido — é a tese virando ferramenta. Encarna as
-duas faces do estudo: a **capacidade** (ler só o que precisa é propriedade do
-formato, não de um dataset) e a **fronteira honesta** (recall semântico denso
-delega a um índice vetorial que o envelope referencia; o BH convoca o
-especialista, não compete). O ganho **escala com o número de ramos** — a mesma
-lei transversal da §4. Ver `bhmem/README.md`.
+**`bhtrace` — traces distribuídos (observabilidade).** Um trace é uma árvore
+(trace → spans → eventos); a estrutura é o índice, os atributos pesados (SQL,
+stack traces, headers) são o resíduo.
+
+| leitura | o que devolve | vs store plano |
+|---|---|---|
+| `summary()` / `critical_path()` | o esqueleto sem o payload | **9× menos** |
+| `subtree(span)` | um drill-in | **9× menos** |
+| `service(name)` | um serviço | **5× menos** |
+
+*(Demo: trace de checkout com 269 spans, pesado em atributos; 9/9 testes verdes.)*
+
+**`bhckpt` — checkpoints de modelo.** Um checkpoint é uma hierarquia
+(modelo → camadas → tensores → experts); os pesos dominam, a estrutura é minúscula.
+
+| leitura | o que devolve | vs checkpoint plano |
+|---|---|---|
+| `summary()` | arquitetura de um modelo de 16 MB lida em 9 KB, sem pesos | **1 779× menos** |
+| `expert(i, e)` | carregar um expert MoE sem a mistura | **20× menos** |
+| `layer(i)` / `tensor(name)` | uma camada / um tensor | **12× / 10× menos** |
+
+*(Demo: transformer de 4 camadas, 2 camadas MoE × 6 experts, 16,2 MB; 8/8 testes verdes.)*
+
+**Fronteira honesta, a mesma nos três:** o BH ganha no acesso estrutural e
+**delega** o resíduo denso (busca full-text → índice invertido; quantização
+por-tensor → o seu especialista; recall semântico denso → um índice vetorial).
+No `bhckpt`, a leitura seletiva por-tensor já existe (`safetensors`) — essa é a
+*âncora*; o novo é a *união* (hierarquia incluindo o expert MoE como leitura de
+1ª classe, roteamento por-tensor, uma face Merkle para proveniência).
+
+Isto não são mais ângulos medidos — é a tese virando ferramentas, o **mesmo
+envelope provado em três domínios**. O ganho escala com o quanto o dado é
+estrutura-dominante — a lei transversal da §4. Ver os READMEs (`bhmem/`,
+`bhtrace/`, `bhckpt/`).
 
 ---
 

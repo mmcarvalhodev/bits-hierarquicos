@@ -6,6 +6,7 @@
 **Reference hardware:** NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 **Test coverage:** 128+ automated tests green, exact correctness as a gate before every measurement
 **Nature of this document:** technical demonstration report — every claim is accompanied by the method and the measured number
+**Revision:** v2 (June 2026) — adds three usable prototypes (agent memory, observability, model checkpoints) in §10
 
 ---
 
@@ -451,13 +452,16 @@ verdict:
 The final proof is not one more benchmark; it is the construction of the format in a domain
 where structure and belonging matter as much as size.
 
-### From thesis to artifact — `bhmem`
+### From thesis to artifacts — three usable prototypes
 
-The first step of that construction is done: **`bhmem`**, a usable `.bh`
-envelope for **agent memory** (`bhmem/`, Python library + tests). The
-agent writes structured memories (fact/event/relation + time + topic +
-provenance) and the format exposes them through the multiple reads — each reading
-only the fraction it asks for, measured in real bytes read from the file:
+The construction is no longer one step but three, and they share **one
+envelope** — proof the paradigm generalizes across domains. Each is a Python
+library with a measured demo and tests; each reads only the fraction a query
+asks for, in real bytes read from the file.
+
+**`bhmem` — agent memory.** The agent writes structured memories
+(fact/event/relation + time + topic + provenance); the format exposes them
+through the multiple reads.
 
 | read | what it returns | bytes read | vs flat store (reads all) |
 |---|---|---|---|
@@ -465,16 +469,43 @@ only the fraction it asks for, measured in real bytes read from the file:
 | `recall(topic)` | the memories of one branch | 4.0% | **22× less** |
 | `since(t)` | memories of the temporal window | 9.8% | **9× less** |
 | `provenance(id)` | source+path of 1 memory | 10.8% | **8× less** |
-| `full()` | everything (baseline) | 100% | 1× |
 
-*(Demo: agent of ~90 days, 60 topics, 2,250 memories; 9/9 tests green.)*
+*(Demo: ~90 days, 60 topics, 2,250 memories; 9/9 tests green.)*
 
-This is not one more measured angle — it is the thesis turning into a tool. It embodies the
-two faces of the study: the **capability** (reading only what it needs is a property of the
-format, not of a dataset) and the **honest boundary** (dense semantic recall
-delegates to a vector index that the envelope references; BH summons the
-specialist, it does not compete). The gain **scales with the number of branches** — the same
-transversal law of §4. See `bhmem/README.md`.
+**`bhtrace` — distributed traces (observability).** A trace is a tree
+(trace → spans → events); the structure is the index, the heavy attributes (SQL,
+stack traces, headers) are the residual.
+
+| read | what it returns | vs flat store |
+|---|---|---|
+| `summary()` / `critical_path()` | the skeleton without the payload | **9× less** |
+| `subtree(span)` | a drill-in | **9× less** |
+| `service(name)` | one service | **5× less** |
+
+*(Demo: 269-span checkout trace, attribute-heavy; 9/9 tests green.)*
+
+**`bhckpt` — model checkpoints.** A checkpoint is a hierarchy
+(model → layers → tensors → experts); the weights dominate, the structure is tiny.
+
+| read | what it returns | vs flat checkpoint |
+|---|---|---|
+| `summary()` | architecture of a 16 MB model read in 9 KB, no weights | **1,779× less** |
+| `expert(i, e)` | load one MoE expert without the mixture | **20× less** |
+| `layer(i)` / `tensor(name)` | one layer / one tensor | **12× / 10× less** |
+
+*(Demo: 4-layer transformer, 2 MoE layers × 6 experts, 16.2 MB; 8/8 tests green.)*
+
+**Honest boundary, the same across all three:** BH wins on structural access and
+**delegates** the dense residual (full-text search → inverted index; per-tensor
+quantization → its specialist; dense semantic recall → a vector index). For
+`bhckpt`, selective per-tensor read already exists (`safetensors`) — that is the
+*anchor*; the new piece is the *union* (hierarchy including the MoE expert as a
+first-class read, per-tensor codec routing, a Merkle face for provenance).
+
+These are not more measured angles — they are the thesis turning into tools, the
+**same envelope proven in three domains**. The gain scales with how
+structure-dominant the data is — the transversal law of §4. See the respective
+READMEs (`bhmem/`, `bhtrace/`, `bhckpt/`).
 
 ---
 

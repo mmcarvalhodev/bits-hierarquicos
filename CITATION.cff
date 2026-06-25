@@ -6,8 +6,8 @@ type: software
 authors:
   - family-names: "Carvalho"
     given-names: "Márcio M."
-version: "1.0.0"
-date-released: "2026-06-23"
+version: "1.1.0"
+date-released: "2026-06-24"
 license: CC-BY-4.0
 repository-code: "https://github.com/mmcarvalhodev/hierarchical-bits"
 url: "https://mmcarvalhodev.github.io/hierarchical-bits/"
