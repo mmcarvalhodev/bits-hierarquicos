@@ -79,7 +79,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 <strong>Reference hardware:</strong> NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 <strong>Test coverage:</strong> 128+ automated tests green, exact correctness as a gate before every measurement
 <strong>Nature of this document:</strong> technical demonstration report — every claim is accompanied by the method and the measured number
-<strong>Repository status:</strong> ahead of the published preprint (Zenodo v1, DOI 10.5281/zenodo.20821058) — §10 adds three usable prototypes (agent memory, observability, model checkpoints) not yet in a published Zenodo version</p>
+<strong>Repository status:</strong> ahead of the published preprint (Zenodo v1, DOI 10.5281/zenodo.20821058) — §10 adds four usable prototypes (agent memory, observability, model checkpoints, adversarial annotations) not yet in a published Zenodo version</p>
 <hr>
 <h2 id="executive-summary">EXECUTIVE SUMMARY</h2>
 <p>Hierarchical Bits (BH) began as a hypothesis from December 2025 ("the byte
@@ -583,8 +583,8 @@ belonging — which no current tool offers together.</p>
 </blockquote>
 <p>The final proof is not one more benchmark; it is the construction of the format in a domain
 where structure and belonging matter as much as size.</p>
-<h3 id="from-thesis-to-artifacts-three-usable-prototypes">From thesis to artifacts — three usable prototypes</h3>
-<p>The construction is no longer one step but three, and they share <strong>one
+<h3 id="from-thesis-to-artifacts-four-usable-prototypes">From thesis to artifacts — four usable prototypes</h3>
+<p>The construction is no longer one step but four, and they share <strong>one
 envelope</strong> — proof the paradigm generalizes across domains. Each is a Python
 library with a measured demo and tests; each reads only the fraction a query
 asks for, in real bytes read from the file.</p>
@@ -687,16 +687,48 @@ stack traces, headers) are the residual.</p>
 </tbody>
 </table>
 <p><em>(Demo: 4-layer transformer, 2 MoE layers × 6 experts, 16.2 MB; 8/8 tests green.)</em></p>
-<p><strong>Honest boundary, the same across all three:</strong> BH wins on structural access and
+<p><strong><code>bhanno</code> — adversarial annotations (the matrix of adverse interpretations).</strong>
+The strongest form of "multiple reads": the same substrate recorded <strong>once</strong>,
+with K annotators laying down co-registered layers that <strong>disagree</strong>. The wafer
+(§3.4) generalized from additive layers to rival ones.</p>
+<table>
+<thead>
+<tr>
+<th>read</th>
+<th>what it returns</th>
+<th>result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>storage</td>
+<td>K rival interpretations vs K independent copies</td>
+<td><strong>4.6× smaller</strong> (5 annotators)</td>
+</tr>
+<tr>
+<td><code>adjudicate()</code></td>
+<td>majority + agreement, reading labels only (no substrate)</td>
+<td><strong>11× less</strong> than full</td>
+</tr>
+<tr>
+<td><code>item_views(id)</code></td>
+<td>all K interpretations of one item (the matrix)</td>
+<td><strong>23× less</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Demo: 200 items, 6 KB substrate each, 5 annotators; 62% agreement, 75 contested; 9/9 tests green.)</em></p>
+<p><strong>Honest boundary, the same across all four:</strong> BH wins on structural access and
 <strong>delegates</strong> the dense residual (full-text search → inverted index; per-tensor
 quantization → its specialist; dense semantic recall → a vector index). For
 <code>bhckpt</code>, selective per-tensor read already exists (<code>safetensors</code>) — that is the
 <em>anchor</em>; the new piece is the <em>union</em> (hierarchy including the MoE expert as a
-first-class read, per-tensor codec routing, a Merkle face for provenance).</p>
+first-class read, per-tensor codec routing, a Merkle face for provenance). For
+<code>bhanno</code>, the envelope <em>surfaces</em> the contest; it does not decide who is right.</p>
 <p>These are not more measured angles — they are the thesis turning into tools, the
-<strong>same envelope proven in three domains</strong>. The gain scales with how
+<strong>same envelope proven in four domains</strong>. The gain scales with how
 structure-dominant the data is — the transversal law of §4. See the respective
-READMEs (<code>bhmem/</code>, <code>bhtrace/</code>, <code>bhckpt/</code>).</p>
+READMEs (<code>bhmem/</code>, <code>bhtrace/</code>, <code>bhckpt/</code>, <code>bhanno/</code>).</p>
 <hr>
 <p><em>"The value is not in the compressed block. It is in the structure that knows what that
 block means."</em></p></main>

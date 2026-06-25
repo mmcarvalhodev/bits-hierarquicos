@@ -6,7 +6,7 @@
 **Hardware de referência:** NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 **Cobertura de testes:** 128+ testes automatizados verdes, correção exata como portão antes de cada medição
 **Natureza deste documento:** relatório técnico de demonstração — cada afirmação é acompanhada do método e do número medido
-**Estado do repositório:** à frente do preprint publicado (Zenodo v1, DOI 10.5281/zenodo.20821058) — a §10 adiciona três protótipos usáveis (memória de agente, observabilidade, checkpoints de modelo) ainda não numa versão publicada do Zenodo
+**Estado do repositório:** à frente do preprint publicado (Zenodo v1, DOI 10.5281/zenodo.20821058) — a §10 adiciona quatro protótipos usáveis (memória de agente, observabilidade, checkpoints de modelo, anotações adversas) ainda não numa versão publicada do Zenodo
 
 ---
 
@@ -452,9 +452,9 @@ veredicto:
 A prova final não é mais um benchmark; é a construção do formato num domínio
 onde estrutura e pertencimento importam tanto quanto o tamanho.
 
-### Da tese aos artefatos — três protótipos usáveis
+### Da tese aos artefatos — quatro protótipos usáveis
 
-A construção já não é um passo, mas três, e todos partilham **um envelope** —
+A construção já não é um passo, mas quatro, e todos partilham **um envelope** —
 prova de que o paradigma generaliza entre domínios. Cada um é uma biblioteca
 Python com demo medida e testes; cada um lê só a fração que a consulta pede, em
 bytes reais lidos do arquivo.
@@ -495,17 +495,31 @@ stack traces, headers) são o resíduo.
 
 *(Demo: transformer de 4 camadas, 2 camadas MoE × 6 experts, 16,2 MB; 8/8 testes verdes.)*
 
-**Fronteira honesta, a mesma nos três:** o BH ganha no acesso estrutural e
+**`bhanno` — anotações adversas (a matriz de interpretações adversas).** A forma
+mais forte das "múltiplas leituras": o mesmo substrato gravado **uma vez**, com K
+anotadores a colocar camadas co-registadas que **discordam**. O wafer (§3.4)
+generalizado de camadas aditivas para camadas rivais.
+
+| leitura | o que devolve | resultado |
+|---|---|---|
+| armazenamento | K interpretações rivais vs K cópias independentes | **4,6× menor** (5 anotadores) |
+| `adjudicate()` | maioria + concordância, lendo só os labels (sem substrato) | **11× menos** que o full |
+| `item_views(id)` | todas as K interpretações de um item (a matriz) | **23× menos** |
+
+*(Demo: 200 itens, substrato de 6 KB cada, 5 anotadores; 62% de concordância, 75 contestados; 9/9 testes verdes.)*
+
+**Fronteira honesta, a mesma nos quatro:** o BH ganha no acesso estrutural e
 **delega** o resíduo denso (busca full-text → índice invertido; quantização
 por-tensor → o seu especialista; recall semântico denso → um índice vetorial).
 No `bhckpt`, a leitura seletiva por-tensor já existe (`safetensors`) — essa é a
 *âncora*; o novo é a *união* (hierarquia incluindo o expert MoE como leitura de
-1ª classe, roteamento por-tensor, uma face Merkle para proveniência).
+1ª classe, roteamento por-tensor, uma face Merkle para proveniência). No
+`bhanno`, o envelope *expõe* o conflito; não decide quem tem razão.
 
 Isto não são mais ângulos medidos — é a tese virando ferramentas, o **mesmo
-envelope provado em três domínios**. O ganho escala com o quanto o dado é
+envelope provado em quatro domínios**. O ganho escala com o quanto o dado é
 estrutura-dominante — a lei transversal da §4. Ver os READMEs (`bhmem/`,
-`bhtrace/`, `bhckpt/`).
+`bhtrace/`, `bhckpt/`, `bhanno/`).
 
 ---
 

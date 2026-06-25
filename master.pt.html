@@ -79,7 +79,7 @@ hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
 <strong>Hardware de referência:</strong> NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 <strong>Cobertura de testes:</strong> 128+ testes automatizados verdes, correção exata como portão antes de cada medição
 <strong>Natureza deste documento:</strong> relatório técnico de demonstração — cada afirmação é acompanhada do método e do número medido
-<strong>Estado do repositório:</strong> à frente do preprint publicado (Zenodo v1, DOI 10.5281/zenodo.20821058) — a §10 adiciona três protótipos usáveis (memória de agente, observabilidade, checkpoints de modelo) ainda não numa versão publicada do Zenodo</p>
+<strong>Estado do repositório:</strong> à frente do preprint publicado (Zenodo v1, DOI 10.5281/zenodo.20821058) — a §10 adiciona quatro protótipos usáveis (memória de agente, observabilidade, checkpoints de modelo, anotações adversas) ainda não numa versão publicada do Zenodo</p>
 <hr>
 <h2 id="sumario-executivo">SUMÁRIO EXECUTIVO</h2>
 <p>Bits Hierárquicos (BH) começou como uma hipótese de Dezembro de 2025 ("o byte
@@ -583,8 +583,8 @@ pertencimento — que nenhuma ferramenta atual oferece junta.</p>
 </blockquote>
 <p>A prova final não é mais um benchmark; é a construção do formato num domínio
 onde estrutura e pertencimento importam tanto quanto o tamanho.</p>
-<h3 id="da-tese-aos-artefatos-tres-prototipos-usaveis">Da tese aos artefatos — três protótipos usáveis</h3>
-<p>A construção já não é um passo, mas três, e todos partilham <strong>um envelope</strong> —
+<h3 id="da-tese-aos-artefatos-quatro-prototipos-usaveis">Da tese aos artefatos — quatro protótipos usáveis</h3>
+<p>A construção já não é um passo, mas quatro, e todos partilham <strong>um envelope</strong> —
 prova de que o paradigma generaliza entre domínios. Cada um é uma biblioteca
 Python com demo medida e testes; cada um lê só a fração que a consulta pede, em
 bytes reais lidos do arquivo.</p>
@@ -687,16 +687,48 @@ stack traces, headers) são o resíduo.</p>
 </tbody>
 </table>
 <p><em>(Demo: transformer de 4 camadas, 2 camadas MoE × 6 experts, 16,2 MB; 8/8 testes verdes.)</em></p>
-<p><strong>Fronteira honesta, a mesma nos três:</strong> o BH ganha no acesso estrutural e
+<p><strong><code>bhanno</code> — anotações adversas (a matriz de interpretações adversas).</strong> A forma
+mais forte das "múltiplas leituras": o mesmo substrato gravado <strong>uma vez</strong>, com K
+anotadores a colocar camadas co-registadas que <strong>discordam</strong>. O wafer (§3.4)
+generalizado de camadas aditivas para camadas rivais.</p>
+<table>
+<thead>
+<tr>
+<th>leitura</th>
+<th>o que devolve</th>
+<th>resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>armazenamento</td>
+<td>K interpretações rivais vs K cópias independentes</td>
+<td><strong>4,6× menor</strong> (5 anotadores)</td>
+</tr>
+<tr>
+<td><code>adjudicate()</code></td>
+<td>maioria + concordância, lendo só os labels (sem substrato)</td>
+<td><strong>11× menos</strong> que o full</td>
+</tr>
+<tr>
+<td><code>item_views(id)</code></td>
+<td>todas as K interpretações de um item (a matriz)</td>
+<td><strong>23× menos</strong></td>
+</tr>
+</tbody>
+</table>
+<p><em>(Demo: 200 itens, substrato de 6 KB cada, 5 anotadores; 62% de concordância, 75 contestados; 9/9 testes verdes.)</em></p>
+<p><strong>Fronteira honesta, a mesma nos quatro:</strong> o BH ganha no acesso estrutural e
 <strong>delega</strong> o resíduo denso (busca full-text → índice invertido; quantização
 por-tensor → o seu especialista; recall semântico denso → um índice vetorial).
 No <code>bhckpt</code>, a leitura seletiva por-tensor já existe (<code>safetensors</code>) — essa é a
 <em>âncora</em>; o novo é a <em>união</em> (hierarquia incluindo o expert MoE como leitura de
-1ª classe, roteamento por-tensor, uma face Merkle para proveniência).</p>
+1ª classe, roteamento por-tensor, uma face Merkle para proveniência). No
+<code>bhanno</code>, o envelope <em>expõe</em> o conflito; não decide quem tem razão.</p>
 <p>Isto não são mais ângulos medidos — é a tese virando ferramentas, o <strong>mesmo
-envelope provado em três domínios</strong>. O ganho escala com o quanto o dado é
+envelope provado em quatro domínios</strong>. O ganho escala com o quanto o dado é
 estrutura-dominante — a lei transversal da §4. Ver os READMEs (<code>bhmem/</code>,
-<code>bhtrace/</code>, <code>bhckpt/</code>).</p>
+<code>bhtrace/</code>, <code>bhckpt/</code>, <code>bhanno/</code>).</p>
 <hr>
 <p><em>"O valor não está no bloco comprimido. Está na estrutura que sabe o que aquele
 bloco significa."</em></p></main>

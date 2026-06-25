@@ -61,6 +61,7 @@ The boundary is not entropy — it's **structure recognition**.
 | [`bhmem/`](bhmem/) | **Usable prototype** — agent memory as `.bh` (lib + tests, 35×/22×/9×/8×). |
 | [`bhtrace/`](bhtrace/) | **Usable prototype** — a distributed trace as `.bh` (read the skeleton without the payload, ~9× less). |
 | [`bhckpt/`](bhckpt/) | **Usable prototype** — a model checkpoint as `.bh` (architecture without weights ~1,800× less; load one MoE expert ~20× less). |
+| [`bhanno/`](bhanno/) | **Usable prototype** — adversarial annotations (K rival labelings over one substrate, ~4.6× vs K copies; adjudication reads labels only). |
 | `db/` `merkle/` `wafer/` `gpu/` `compositional/` … | The terrains tested, each with code + `RESULTS_*.md`. |
 
 *Portuguese originals: `BH_MASTER.md`, `BH_PITCH_APRESENTACAO.md`,

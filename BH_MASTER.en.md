@@ -6,7 +6,7 @@
 **Reference hardware:** NVIDIA GeForce RTX 3060 12 GB · Python 3.13 · NumPy · CuPy/CUDA · Pillow
 **Test coverage:** 128+ automated tests green, exact correctness as a gate before every measurement
 **Nature of this document:** technical demonstration report — every claim is accompanied by the method and the measured number
-**Repository status:** ahead of the published preprint (Zenodo v1, DOI 10.5281/zenodo.20821058) — §10 adds three usable prototypes (agent memory, observability, model checkpoints) not yet in a published Zenodo version
+**Repository status:** ahead of the published preprint (Zenodo v1, DOI 10.5281/zenodo.20821058) — §10 adds four usable prototypes (agent memory, observability, model checkpoints, adversarial annotations) not yet in a published Zenodo version
 
 ---
 
@@ -452,9 +452,9 @@ verdict:
 The final proof is not one more benchmark; it is the construction of the format in a domain
 where structure and belonging matter as much as size.
 
-### From thesis to artifacts — three usable prototypes
+### From thesis to artifacts — four usable prototypes
 
-The construction is no longer one step but three, and they share **one
+The construction is no longer one step but four, and they share **one
 envelope** — proof the paradigm generalizes across domains. Each is a Python
 library with a measured demo and tests; each reads only the fraction a query
 asks for, in real bytes read from the file.
@@ -495,17 +495,31 @@ stack traces, headers) are the residual.
 
 *(Demo: 4-layer transformer, 2 MoE layers × 6 experts, 16.2 MB; 8/8 tests green.)*
 
-**Honest boundary, the same across all three:** BH wins on structural access and
+**`bhanno` — adversarial annotations (the matrix of adverse interpretations).**
+The strongest form of "multiple reads": the same substrate recorded **once**,
+with K annotators laying down co-registered layers that **disagree**. The wafer
+(§3.4) generalized from additive layers to rival ones.
+
+| read | what it returns | result |
+|---|---|---|
+| storage | K rival interpretations vs K independent copies | **4.6× smaller** (5 annotators) |
+| `adjudicate()` | majority + agreement, reading labels only (no substrate) | **11× less** than full |
+| `item_views(id)` | all K interpretations of one item (the matrix) | **23× less** |
+
+*(Demo: 200 items, 6 KB substrate each, 5 annotators; 62% agreement, 75 contested; 9/9 tests green.)*
+
+**Honest boundary, the same across all four:** BH wins on structural access and
 **delegates** the dense residual (full-text search → inverted index; per-tensor
 quantization → its specialist; dense semantic recall → a vector index). For
 `bhckpt`, selective per-tensor read already exists (`safetensors`) — that is the
 *anchor*; the new piece is the *union* (hierarchy including the MoE expert as a
-first-class read, per-tensor codec routing, a Merkle face for provenance).
+first-class read, per-tensor codec routing, a Merkle face for provenance). For
+`bhanno`, the envelope *surfaces* the contest; it does not decide who is right.
 
 These are not more measured angles — they are the thesis turning into tools, the
-**same envelope proven in three domains**. The gain scales with how
+**same envelope proven in four domains**. The gain scales with how
 structure-dominant the data is — the transversal law of §4. See the respective
-READMEs (`bhmem/`, `bhtrace/`, `bhckpt/`).
+READMEs (`bhmem/`, `bhtrace/`, `bhckpt/`, `bhanno/`).
 
 ---
 

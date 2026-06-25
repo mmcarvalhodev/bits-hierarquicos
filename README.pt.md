@@ -59,6 +59,7 @@ A fronteira não é a entropia — é o **reconhecimento da estrutura**.
 | [`bhmem/`](bhmem/) | **Protótipo usável** — memória de agente em `.bh` (lib + testes, 35×/22×/9×/8×). |
 | [`bhtrace/`](bhtrace/) | **Protótipo usável** — um trace distribuído em `.bh` (ler o esqueleto sem o payload, ~9× menos). |
 | [`bhckpt/`](bhckpt/) | **Protótipo usável** — um checkpoint de modelo em `.bh` (arquitetura sem os pesos ~1.800× menos; carregar um expert MoE ~20× menos). |
+| [`bhanno/`](bhanno/) | **Protótipo usável** — anotações adversas (K rotulagens rivais sobre um substrato, ~4.6× vs K cópias; adjudicação lê só os labels). |
 | `db/` `merkle/` `wafer/` `gpu/` `compositional/` … | Os terrenos testados, cada um com código + `RESULTS_*.md`. |
 
 *Versões em inglês: `BH_MASTER.en.md`, `BH_PITCH_APRESENTACAO.en.md`,
