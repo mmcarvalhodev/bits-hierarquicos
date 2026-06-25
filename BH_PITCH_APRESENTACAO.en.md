@@ -40,9 +40,10 @@ READINGS    one lens / the matrix / the majority / the disagreement
             — your choice, at read time, not baked in
 ```
 
-We call this the **First-Class Interpretation Representation (FCIR)** —
-interpretations kept as persistent, addressable, *first-class* entities over a
-shared substrate, rather than temporary versions or conflicts to be resolved away.
+We give this property a **working name — the First-Class Interpretation
+Representation (FCIR)**: interpretations kept as persistent, addressable,
+*first-class* entities over a shared substrate, rather than temporary versions or
+conflicts to be resolved away. *(Working name — see Slide 4.)*
 
 ---
 
@@ -68,10 +69,12 @@ universally new":
 > — DICOM, COG/STAC, lakeFS, CRAM/tabix, S-LoRA, MAM. BH does **not** claim to
 > invent that.
 
-The sweep showed that the **First-Class Interpretation Representation (FCIR)** —
-keeping rival readings as preserved entities instead of resolving them away — is
-the aspect where BH most clearly differentiates from current solutions. Saying plainly what
-BH is *not* is what survives the skeptical engineer.
+Our 20-domain sweep **identified the First-Class Interpretation Representation
+(FCIR)** — keeping rival readings as preserved entities instead of resolving them
+away — as the property that best distinguishes BH **from the approaches
+evaluated**. That is a result of the investigation, not a universal claim; FCIR
+is a working name, and the property may yet prove broader. Saying plainly what BH
+is *not* — and how far the claim reaches — is what survives the skeptical engineer.
 
 ---
 

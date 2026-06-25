@@ -42,8 +42,9 @@ structure recognition.
 representation* — the **First-Class Interpretation Representation (FCIR)**: rival
 interpretations kept as first-class, co-registered entities over one immutable
 substrate, without forced adjudication. The substrate-sharing economics this
-study measures are real but already mature SOTA in most domains; FCIR is where BH
-most clearly differs from current systems. See `BH_PRINCIPLE.md`.
+study measures are real but already mature SOTA in most domains; our sweep
+identified FCIR (a working name) as the property that best distinguishes BH from
+the domains evaluated — a result, not a universal claim. See `BH_PRINCIPLE.md`.
 
 ---
 

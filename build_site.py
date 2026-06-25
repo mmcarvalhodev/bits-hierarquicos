@@ -183,9 +183,9 @@ LANDING = {
                  '— interpretations share <b>one immutable substrate</b> and stay queryable, '
                  'without duplicating the data and without forcing them into a single truth.'),
         "sub": ("The heart, in one line: <b>don't duplicate the world every time someone "
-                "disagrees with it.</b> The distinguishing property — rival interpretations "
-                "kept as first-class entities — is the <b>First-Class Interpretation "
-                "Representation (FCIR)</b>."),
+                "disagrees with it.</b> Our sweep identified this — rival interpretations "
+                "kept as first-class entities — as the property that best distinguishes BH "
+                "from the approaches evaluated; we give it a working name: <b>FCIR</b>."),
         "cap_h": "What makes it different — and what doesn't",
         "cap_p": ('Storing a substrate once and reading it selectively is <i>already</i> mature '
                   'SOTA (DICOM, COG, lakeFS, S-LoRA…) — BH does not claim that. A '
@@ -220,9 +220,9 @@ LANDING = {
                  'possivelmente contraditórias — partilham <b>um substrato imutável</b> e '
                  'permanecem consultáveis, sem duplicar o dado nem as forçar a uma única verdade.'),
         "sub": ('O coração, numa linha: <b>não duplicar o mundo toda vez que alguém discorda '
-                'dele.</b> A propriedade distintiva — interpretações rivais mantidas como '
-                'entidades de 1ª classe — é a <b>First-Class Interpretation Representation '
-                '(FCIR)</b>.'),
+                'dele.</b> A nossa varredura identificou isto — interpretações rivais mantidas '
+                'como entidades de 1ª classe — como a propriedade que melhor distingue o BH '
+                'das abordagens avaliadas; damos-lhe um nome de trabalho: <b>FCIR</b>.'),
         "cap_h": "O que o torna diferente — e o que não torna",
         "cap_p": ('Guardar um substrato uma vez e ler seletivo <i>já</i> é SOTA maduro '
                   '(DICOM, COG, lakeFS, S-LoRA…) — o BH não reivindica isso. Uma '

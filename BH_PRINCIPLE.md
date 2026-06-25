@@ -1,5 +1,5 @@
 # Hierarchical Bits — The Principle
-## First-Class Interpretation Representation (FCIR)
+## First-Class Interpretation Representation (FCIR) — a working name
 
 > *From a file format to a property of representation.*
 
@@ -21,14 +21,25 @@ instances of — and principles survive where formats age.
 > individually addressable entities; adjudication between them is deferred to
 > read-time and optional, never baked in and never destructive.**
 
-We name this property the **First-Class Interpretation Representation (FCIR)**:
-*a representation in which interpretations are first-class — persistent,
-addressable, co-equal — rather than temporary versions or conflicts to be
-resolved away.* "First-class" is the load-bearing word: it is what separates an
-interpretation that has independent standing from one that exists only until it
-is merged into a single truth. The name describes the **differential the sweep
-surfaced**, not a cage for the theory — BH may yet express other properties; FCIR
-is the one where it most clearly differs from current systems today.
+We give this property a **working name** — the **First-Class Interpretation
+Representation (FCIR)**: *a representation in which interpretations are
+first-class — persistent, addressable, co-equal — rather than temporary versions
+or conflicts to be resolved away.* "First-class" is the load-bearing word: it is
+what separates an interpretation with independent standing from one that exists
+only until it is merged into a single truth.
+
+**Why "working name."** A property earns a permanent name after it has been
+observed, tested, and seen to recur across contexts — not at the moment it is
+first noticed. We are at the start of that sequence, not the end. So the honest
+statement is not *"BH's contribution is FCIR"* (a universal claim) but:
+
+> **Our investigation identified FCIR as the property that best distinguishes BH
+> from the approaches evaluated.**
+
+That is a description of a result, scoped to what we surveyed — not a law, and
+not a fence around what BH might later turn out to be. If the property proves
+broader or subtly different as it recurs in new contexts, the name should follow
+the idea, not constrain it.
 
 ## The distinguishing test
 

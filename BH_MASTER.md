@@ -43,8 +43,9 @@ arquivo* para *propriedade de representação* — a **First-Class Interpretatio
 Representation (FCIR)**: interpretações rivais mantidas como entidades de 1ª
 classe, co-registadas sobre um substrato imutável, sem adjudicação forçada. A
 economia de substrato-partilhado que este estudo mede é real mas já é SOTA maduro
-na maioria dos domínios; o FCIR é onde o BH mais claramente difere dos sistemas
-atuais. Ver `BH_PRINCIPLE.md`.
+na maioria dos domínios; a nossa varredura identificou a FCIR (um nome de
+trabalho) como a propriedade que melhor distingue o BH dos domínios avaliados —
+um resultado, não uma verdade universal. Ver `BH_PRINCIPLE.md`.
 
 ---
 

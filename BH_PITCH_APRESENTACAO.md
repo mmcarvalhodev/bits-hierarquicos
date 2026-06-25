@@ -39,10 +39,10 @@ LEITURAS      uma lente / a matriz / a maioria / a discordância
               — tua escolha, no momento da leitura, não embutida
 ```
 
-Chamamos a esta propriedade a **First-Class Interpretation Representation
-(FCIR)** — interpretações mantidas como entidades persistentes, endereçáveis e
-de *primeira classe* sobre um substrato partilhado, em vez de versões
-temporárias ou conflitos a resolver.
+Damos a esta propriedade um **nome de trabalho — a First-Class Interpretation
+Representation (FCIR)**: interpretações mantidas como entidades persistentes,
+endereçáveis e de *primeira classe* sobre um substrato partilhado, em vez de
+versões temporárias ou conflitos a resolver. *(Nome de trabalho — ver Slide 4.)*
 
 ---
 
@@ -68,10 +68,13 @@ universalmente novo":
 > **Guardar o substrato uma vez + ler seletivo já é SOTA maduro** — DICOM,
 > COG/STAC, lakeFS, CRAM/tabix, S-LoRA, MAM. O BH **não** afirma inventar isso.
 
-A varredura mostrou que a **First-Class Interpretation Representation (FCIR)** —
-manter leituras rivais como entidades preservadas em vez de as resolver — é o
-aspeto em que o BH mais claramente se diferencia das soluções atuais. Dizer com
-clareza o que o BH **não** é, é o que sobrevive ao engenheiro cético.
+A nossa varredura de 20 domínios **identificou a First-Class Interpretation
+Representation (FCIR)** — manter leituras rivais como entidades preservadas em
+vez de as resolver — como a propriedade que melhor distingue o BH **das
+abordagens avaliadas**. É um resultado da investigação, não uma verdade
+universal; FCIR é um nome de trabalho, e a propriedade pode vir a revelar-se mais
+ampla. Dizer com clareza o que o BH **não** é — e até onde a afirmação alcança —
+é o que sobrevive ao engenheiro cético.
 
 ---
 
