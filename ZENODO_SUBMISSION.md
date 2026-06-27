@@ -1,15 +1,17 @@
-# Zenodo submission — ready-to-use kit
+# Zenodo — publishing v2 (New version)
 
-This file has everything you need to publish the study on Zenodo and get a
-permanent DOI. The PDF is already generated; the metadata below is paste-ready.
+The v1 record exists (concept DOI **10.5281/zenodo.20821058**, version v1
+`…20821059`). This kit publishes **v2** as a *New version* of that record — the
+concept DOI keeps pointing to the latest automatically; v1 stays as history.
+Nothing is deleted; superseding is the right move for "the document aged".
 
 ---
 
 ## The file to upload
 
-**`BH_MASTER.pdf`** — the preprint (cover page + the full English study,
-~11 pages, generated from `BH_MASTER.en.md`).
-Regenerate any time with:
+**`BH_MASTER.pdf`** — the full honest arc in one document (~24 pages, 4 parts:
+the measured study → the principle (FCIR) → the algebra → the provisional
+conclusion). Regenerate any time:
 
 ```
 X:/miniconda3/python.exe print_pdf.py
@@ -18,99 +20,78 @@ X:/miniconda3/python.exe print_pdf.py
 
 ---
 
-## Metadata (paste-ready)
+## Metadata (paste-ready, updated for v2)
 
 **Title**
 ```
-Hierarchical Bits: A Structural Envelope for Orchestrating Representations — Method, Measurements and Boundaries
+Hierarchical Bits — an investigation: from a representation paradigm to a property (FCIR), and its provisional conclusion
 ```
 
 **Authors** — `Carvalho, Márcio M.` · Affiliation: `Independent researcher`
 
 **Resource type** — `Publication` → `Technical note`
-(not "Journal article" — this is a technical report, not peer-reviewed.)
+
+**Version** — `2.0`
 
 **License** — `Creative Commons Attribution 4.0 International (CC BY 4.0)`
 
 **Keywords**
 ```
-hierarchical data, structural envelope, codec orchestration, selective reading, agent memory, data formats
+representation model, concurrent interpretations, FCIR, immutable substrate, named graphs, standoff annotation, data versioning, data formats
 ```
 
 **Description**
 ```
-Hierarchical Bits (BH) is a data-format paradigm investigated as a structural
-envelope rather than a codec. This technical note tests the hypothesis ("the
-byte is an implicit tree; hierarchy is interpretation") across nine independent
-angles — image codec, database aggregation, Merkle verification, co-registered
-layers (wafer/video), GPU data movement, multimodal AI storage,
-symbolic/compositional density, decode-as-program, and orchestration — each
-with declared falsifiable claims, exact correctness as a gate, and honest
-baselines distinguishing gains vs naive from gains vs state of the art.
+Hierarchical Bits (BH) began as a strong hypothesis — that it introduced a new,
+general paradigm of representation — and is reported here at the honest size the
+evidence supports.
 
-Central finding: BH does not compress dense signal better than JPEG/WebP/AVIF
-(it loses — measured), but as a structural envelope it (a) makes structure
-explicit at 0–6% cost, (b) routes each region's residual to the right
-specialist, and (c) offers multiple reads over one structure. Anchor result: a
-structured document is 2.1× smaller than WebP and readable per-region in 3–55×
-fewer bytes, within one file. A usable prototype (bhmem, agent memory)
-accompanies the study. The transversal law: BH pays off to the extent the data
-is structure, not signal; the boundary is structure recognition, not entropy.
+The investigation tested the hypothesis across nine measured angles and a
+20-domain survey. Result: the universal-paradigm claim was NOT confirmed — a
+shared immutable substrate plus selective reading is already mature state of the
+art across most domains (DICOM, COG/STAC, lakeFS, CRAM/tabix, S-LoRA, MAM). What
+survived is a narrower, sharper property: keeping multiple — possibly
+contradictory — interpretations as first-class, co-registered, persistent
+entities over one substrate, with adjudication deferred and optional. We give it
+a working name, the First-Class Interpretation Representation (FCIR), formalized
+as the decoupling of coexistence from adjudication.
+
+Honestly: FCIR is not a new mechanism — RDF named graphs (with provenance) and
+standoff annotation already implement it within their domains; the contribution
+is a cross-domain name, a falsifiable test, and an algebra (a specification, not
+a verified theory). This version contains the measured study, the principle, the
+formal algebra, and a provisional conclusion with its limitations stated. The
+work stands as an investigation and as method as much as any single finding.
 ```
 
 ---
 
-## Option A — Quick manual upload (2 minutes, gives a DOI now)
+## Steps — publish v2 (≈5 clicks; only you can do this)
 
-1. Go to **https://zenodo.org** → **Log in with GitHub** (most convenient).
-2. **New upload** → drag in **`BH_MASTER.pdf`**.
-3. Fill the fields with the metadata above.
-4. **Publish.** You get a permanent DOI in seconds (e.g. `10.5281/zenodo.XXXXXXX`).
-
-This DOI is for the PDF only. Use Option B as well if you want the *code* archived
-and auto-versioned.
-
-## Option B — GitHub integration (auto-DOI on every release)
-
-This archives the whole repository and mints a DOI automatically each release.
-The repo already contains [`.zenodo.json`](.zenodo.json) so Zenodo reads the
-metadata above without you retyping it.
-
-1. **https://zenodo.org** → log in with GitHub.
-2. Top-right menu → **GitHub** → find **`mmcarvalhodev/hierarchical-bits`** →
-   flip the toggle **ON**. (This installs the release webhook.)
-3. Back on GitHub: **Releases** → **Draft a new release** → tag `v1.0.0`,
-   title `Hierarchical Bits v1.0.0` → **Publish release**.
-4. Zenodo catches the release, reads `.zenodo.json`, and mints the DOI
-   (visible back on the Zenodo "GitHub" page within a minute).
-
-You get **two DOIs**: a *concept DOI* (always points to the latest version) and
-a *version DOI* (this specific release). Cite the concept DOI in the README.
+1. **https://zenodo.org** → log in → open your record
+   **https://zenodo.org/records/20821059**.
+2. Click **"New version"** (creates a draft copy with the metadata pre-filled).
+3. **Files:** delete the old `BH_MASTER.pdf` and upload the new one.
+4. Update **Title**, **Description**, **Keywords** with the v2 block above; set
+   **Version = 2.0**.
+5. **Publish.** You get a **new version DOI**; the **concept DOI
+   `10.5281/zenodo.20821058` now resolves to v2 automatically**.
 
 ---
 
-## After you have the DOI — close the loop
+## After publishing — nothing breaks
 
-1. **README badge** — add at the very top of `README.md` (replace the number):
-   ```markdown
-   [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-   ```
-2. **CITATION.cff** — uncomment the `doi:` line in [`CITATION.cff`](CITATION.cff)
-   and fill it in (GitHub then shows a "Cite this repository" button).
-3. **Homepage / LinkedIn** — link the DOI as the formal preprint reference.
-
-That closes the cycle: arrivals from the site find the formal preprint;
-arrivals from Zenodo find the code.
+- **README badge, site, citation: no change needed** — they all use the
+  *concept* DOI, which is stable and now points to v2.
+- *(Optional)* bump `version: "2.0"` in [`CITATION.cff`](CITATION.cff).
 
 ---
 
 ## Notes
 
-- **Affiliation** is optional on Zenodo; "Independent researcher" is fine, no
-  institution required.
+- v1 remains citable and intact; v2 supersedes it under the same concept DOI.
+  This is the honest way to retire an aged document — not deletion.
 - The repository keeps the **dual license**: code under Apache-2.0
-  ([`LICENSE`](LICENSE)), documents under CC BY 4.0
-  ([`LICENSE-docs.md`](LICENSE-docs.md)). The Zenodo record (the PDF/document)
-  is the CC BY 4.0 side.
-- A Portuguese PDF can be produced too (point `print_pdf.py` at `BH_MASTER.md`)
-  if you want a bilingual Zenodo record — just ask.
+  ([`LICENSE`](LICENSE)), documents under CC BY 4.0 ([`LICENSE-docs.md`](LICENSE-docs.md)).
+- A Portuguese PDF can be produced too (chain the `.md` PT sources in
+  `print_pdf.py`) for a bilingual record — just ask.
