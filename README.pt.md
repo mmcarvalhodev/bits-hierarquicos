@@ -18,6 +18,8 @@ disciplinas leem-na de forma diferente, hipóteses competem, versões acumulam-s
 Hoje, segurá-las obriga a uma escolha má — **copiar a base** uma vez por
 interpretação, ou **fundir numa só** e perder o resto.
 
+![FCIR — o modelo numa imagem: interpretações rivais co-registadas sobre um substrato imutável, com adjudicação opcional no momento da leitura](pitch_assets/fcir_diagram.svg)
+
 ## O que o torna diferente — e o que não torna
 
 Guardar um substrato uma vez e ler seletivo **já é SOTA maduro** — DICOM,

@@ -309,6 +309,7 @@ def build_index() -> None:
   <p class="sub">{L['sub']}</p>
   <a href="{DOI_URL}"><img class="doi-badge" src="{DOI_BADGE}" alt="DOI {DOI}"></a>
 </div>
+<p style="text-align:center; margin: 8px 0 4px;"><img src="pitch_assets/fcir_diagram.svg" alt="FCIR — the model in one picture" style="max-width:100%; border:0;"></p>
 <h2 style="border:0">{L['cap_h']}</h2>
 <p>{L['cap_p']}</p>
 <table><thead><tr><th>{L['th'][0]}</th><th>{L['th'][1]}</th><th>{L['th'][2]}</th></tr></thead>

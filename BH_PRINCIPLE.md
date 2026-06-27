@@ -41,6 +41,8 @@ not a fence around what BH might later turn out to be. If the property proves
 broader or subtly different as it recurs in new contexts, the name should follow
 the idea, not constrain it.
 
+![FCIR — the model in one picture: rival interpretations co-registered over one immutable substrate; adjudication is a read-time, optional choice (one lens / majority / keep the disagreement)](pitch_assets/fcir_diagram.svg)
+
 ## The distinguishing test
 
 What separates a BH representation from an `ANCHOR` system (one that *also*

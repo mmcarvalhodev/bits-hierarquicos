@@ -18,6 +18,8 @@ it, disciplines read it differently, hypotheses compete over it, versions
 accumulate. Today, holding them forces a bad choice — **copy the base** once per
 interpretation, or **merge to one** and lose the rest.
 
+![FCIR — the model in one picture: rival interpretations co-registered over one immutable substrate, with optional read-time adjudication](pitch_assets/fcir_diagram.svg)
+
 ## What makes it different — and what doesn't
 
 Storing a substrate once and reading it selectively is **already mature SOTA** —

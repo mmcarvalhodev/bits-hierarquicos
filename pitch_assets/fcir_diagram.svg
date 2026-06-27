@@ -1,0 +1,87 @@
+<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#607d8b"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="600" fill="#ffffff"/>
+
+  <!-- title -->
+  <text x="480" y="40" text-anchor="middle" font-size="23" font-weight="700" fill="#1b1f23">First-Class Interpretation Representation (FCIR)</text>
+  <text x="480" y="66" text-anchor="middle" font-size="14" fill="#57606a">many interpretations · one immutable substrate · adjudication deferred and optional</text>
+
+  <!-- co-registration guides (behind) -->
+  <g stroke="#cfd8dc" stroke-width="1.5" stroke-dasharray="4 5">
+    <line x1="214" y1="130" x2="214" y2="498"/>
+    <line x1="364" y1="130" x2="364" y2="498"/>
+    <line x1="514" y1="130" x2="514" y2="498"/>
+  </g>
+
+  <!-- conflict band over e2 -->
+  <rect x="298" y="92" width="132" height="406" fill="#c62828" opacity="0.06"/>
+  <text x="364" y="112" text-anchor="middle" font-size="12.5" fill="#c62828" font-weight="600">Δ at e₂ — A,B: “cat” · C: “dog” · both kept</text>
+
+  <!-- Interp A -->
+  <text x="140" y="157" text-anchor="end" font-size="13" font-weight="700" fill="#2e7d32">Interp A</text>
+  <g fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5">
+    <rect x="150" y="130" width="128" height="44" rx="6"/>
+    <rect x="300" y="130" width="128" height="44" rx="6"/>
+    <rect x="450" y="130" width="128" height="44" rx="6"/>
+  </g>
+  <g font-size="14" fill="#1b5e20" text-anchor="middle" font-weight="600">
+    <text x="214" y="158">sky</text><text x="364" y="158">cat</text><text x="514" y="158">road</text>
+  </g>
+
+  <!-- Interp B -->
+  <text x="140" y="223" text-anchor="end" font-size="13" font-weight="700" fill="#1565c0">Interp B</text>
+  <g fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5">
+    <rect x="150" y="196" width="128" height="44" rx="6"/>
+    <rect x="300" y="196" width="128" height="44" rx="6"/>
+    <rect x="450" y="196" width="128" height="44" rx="6"/>
+  </g>
+  <g font-size="14" fill="#0d47a1" text-anchor="middle" font-weight="600">
+    <text x="214" y="224">sky</text><text x="364" y="224">cat</text><text x="514" y="224">road</text>
+  </g>
+
+  <!-- Interp C (conflicts at e2) -->
+  <text x="140" y="289" text-anchor="end" font-size="13" font-weight="700" fill="#ef6c00">Interp C</text>
+  <g fill="#fff3e0" stroke="#ef6c00" stroke-width="1.5">
+    <rect x="150" y="262" width="128" height="44" rx="6"/>
+    <rect x="450" y="262" width="128" height="44" rx="6"/>
+  </g>
+  <rect x="300" y="262" width="128" height="44" rx="6" fill="#ffcdd2" stroke="#c62828" stroke-width="2"/>
+  <g font-size="14" text-anchor="middle" font-weight="600">
+    <text x="214" y="290" fill="#e65100">sky</text><text x="364" y="290" fill="#b71c1c">dog</text><text x="514" y="290" fill="#e65100">road</text>
+  </g>
+
+  <!-- substrate -->
+  <g fill="#eceff1" stroke="#b0bec5" stroke-width="1.5">
+    <rect x="150" y="440" width="128" height="58" rx="6"/>
+    <rect x="300" y="440" width="128" height="58" rx="6"/>
+    <rect x="450" y="440" width="128" height="58" rx="6"/>
+  </g>
+  <g font-size="17" fill="#455a64" text-anchor="middle" font-weight="700">
+    <text x="214" y="476">e₁</text><text x="364" y="476">e₂</text><text x="514" y="476">e₃</text>
+  </g>
+  <text x="364" y="522" text-anchor="middle" font-size="13" font-weight="700" fill="#455a64">IMMUTABLE SUBSTRATE — stored once, shared by every reading</text>
+
+  <!-- adjudication panel (dashed = optional, not stored) -->
+  <rect x="636" y="126" width="304" height="250" rx="12" fill="#fafafa" stroke="#607d8b" stroke-width="1.6" stroke-dasharray="6 5"/>
+  <text x="788" y="154" text-anchor="middle" font-size="15" font-weight="700" fill="#37474f">Read-time adjudication</text>
+  <text x="788" y="174" text-anchor="middle" font-size="12" fill="#78909c">optional · a choice, not stored</text>
+  <g font-size="12.5" fill="#263238">
+    <rect x="658" y="192" width="260" height="42" rx="8" fill="#ffffff" stroke="#cfd8dc"/>
+    <text x="672" y="218">σ — read one lens (e.g. Interp A)</text>
+    <rect x="658" y="244" width="260" height="42" rx="8" fill="#ffffff" stroke="#cfd8dc"/>
+    <text x="672" y="270">majority → “cat”</text>
+    <rect x="658" y="296" width="260" height="42" rx="8" fill="#ffffff" stroke="#cfd8dc"/>
+    <text x="672" y="322">⊥ — keep the disagreement</text>
+  </g>
+  <!-- arrow from stack to panel -->
+  <line x1="586" y1="218" x2="632" y2="218" stroke="#607d8b" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="609" y="208" text-anchor="middle" font-size="10.5" fill="#607d8b">you choose</text>
+
+  <!-- bottom caption -->
+  <text x="480" y="572" text-anchor="middle" font-size="13.5" fill="#37474f">⊕ coexistence is decoupled from α adjudication — nothing is merged away; every reading persists and stays addressable.</text>
+</svg>

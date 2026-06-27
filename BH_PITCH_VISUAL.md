@@ -5,6 +5,18 @@
 
 ---
 
+## 0. O modelo, numa imagem
+
+A propriedade distintiva (FCIR) num único diagrama: interpretações rivais
+co-registadas sobre um substrato imutável, com a adjudicação diferida para uma
+escolha opcional no momento da leitura.
+
+![Diagrama FCIR](pitch_assets/fcir_diagram.svg)
+
+> Os gráficos abaixo medem a economia de *substrato-partilhado* — real, mas (a
+> varredura mostrou) já SOTA maduro. O diagrama acima é a parte que distingue o
+> BH; trata os gráficos como evidência de apoio, não como o destaque.
+
 ## 1. A união que ninguém vende
 
 Cada formato de hoje cobre só um pedaço. O `.bh` é o único que une todas as

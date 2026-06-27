@@ -6,6 +6,18 @@
 
 ---
 
+## 0. The model, in one picture
+
+The distinctive property (FCIR) in a single diagram: rival interpretations
+co-registered over one immutable substrate, with adjudication deferred to a
+read-time, optional choice.
+
+![FCIR diagram](pitch_assets/fcir_diagram.svg)
+
+> The charts below measure the *substrate-sharing* economics — real, but (the
+> sweep found) already mature SOTA. The diagram above is the part that
+> distinguishes BH; treat the charts as supporting evidence, not the headline.
+
 ## 1. The union nobody sells
 
 Every format today covers only one piece. `.bh` is the only one that unites all
