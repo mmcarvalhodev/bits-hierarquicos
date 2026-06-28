@@ -80,6 +80,7 @@ confrontação completa — incluindo onde os sistemas existentes ganham — est
 | [`BH_ALGEBRA.md`](BH_ALGEBRA.md) | **O modelo formal** — operadores + leis; FCIR como `⊕ ⊥ α` (coexistência desacoplada da adjudicação). |
 | [`CONCLUSION.md`](CONCLUSION.md) | **Conclusão provisória** — a hipótese de paradigma universal não foi confirmada; o que sobreviveu; resposta à crítica externa. |
 | [`applicability/`](applicability/) | A varredura de 20 domínios, pontuada e ranqueada (maioria ANCHOR; um BUILD). |
+| [`DIRECTIONS_EVAL.md`](DIRECTIONS_EVAL.md) | **Fronteiras exploradas (becos sem saída validados)** — 3 direções propostas, testadas e descartadas; registo honesto do limite de abrangência. |
 | [`BH_MASTER.md`](BH_MASTER.md) | O estudo medido: 9 ângulos testados, método declarado, baselines honestos, autocorreções públicas, Related Work. |
 | [`BH_PITCH_APRESENTACAO.md`](BH_PITCH_APRESENTACAO.md) | Pitch de apresentação (7 slides). |
 | [`BH_PITCH_VISUAL.md`](BH_PITCH_VISUAL.md) + [`pitch_assets/`](pitch_assets/) | Pitch com 4 gráficos comparativos. |

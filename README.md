@@ -80,6 +80,7 @@ Full confrontation — including where existing systems already win — is in
 | [`BH_ALGEBRA.md`](BH_ALGEBRA.md) | **The formal model** — operators + laws; FCIR as `⊕ ⊥ α` (coexistence decoupled from adjudication). |
 | [`CONCLUSION.md`](CONCLUSION.md) | **Provisional conclusion** — the universal-paradigm hypothesis was not confirmed; what survived; response to external critique. |
 | [`applicability/`](applicability/) | The 20-domain sweep, scored and ranked (mostly ANCHOR; one BUILD). |
+| [`DIRECTIONS_EVAL.md`](DIRECTIONS_EVAL.md) | **Explored frontiers (validated dead-ends)** — 3 proposed directions tested and discarded; honest record of the scope limit. |
 | [`BH_MASTER.en.md`](BH_MASTER.en.md) | The measured study: 9 angles tested, declared method, honest baselines, public self-corrections, Related Work. |
 | [`BH_PITCH_APRESENTACAO.en.md`](BH_PITCH_APRESENTACAO.en.md) | Presentation pitch (7 slides). |
 | [`BH_PITCH_VISUAL.en.md`](BH_PITCH_VISUAL.en.md) + [`pitch_assets/en/`](pitch_assets/en/) | Pitch with 4 comparative charts. |
