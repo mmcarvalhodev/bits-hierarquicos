@@ -88,6 +88,7 @@ confrontação completa — incluindo onde os sistemas existentes ganham — est
 | [`bhtrace/`](bhtrace/) | **Protótipo usável** — um trace distribuído em `.bh` (ler o esqueleto sem o payload, ~9× menos). |
 | [`bhckpt/`](bhckpt/) | **Protótipo usável** — um checkpoint de modelo em `.bh` (arquitetura sem os pesos ~1.800× menos; carregar um expert MoE ~20× menos). |
 | [`bhanno/`](bhanno/) | **Protótipo usável** — anotações adversas (K rotulagens rivais sobre um substrato, ~4.6× vs K cópias; adjudicação lê só os labels). |
+| [`bhmemx/`](bhmemx/) | **Protótipo usável** — memória multi-agente exercendo a **propriedade 3-4** do FCIR (discordância preservada, adjudicação adiada); o BUILD do [re-score 3-4](applicability/RESCORE_FCIR.md). |
 | `db/` `merkle/` `wafer/` `gpu/` `compositional/` … | Os terrenos testados, cada um com código + `RESULTS_*.md`. |
 
 *Versões em inglês: `BH_MASTER.en.md`, `BH_PITCH_APRESENTACAO.en.md`,

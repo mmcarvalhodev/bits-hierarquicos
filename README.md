@@ -88,6 +88,7 @@ Full confrontation — including where existing systems already win — is in
 | [`bhtrace/`](bhtrace/) | **Usable prototype** — a distributed trace as `.bh` (read the skeleton without the payload, ~9× less). |
 | [`bhckpt/`](bhckpt/) | **Usable prototype** — a model checkpoint as `.bh` (architecture without weights ~1,800× less; load one MoE expert ~20× less). |
 | [`bhanno/`](bhanno/) | **Usable prototype** — adversarial annotations (K rival labelings over one substrate, ~4.6× vs K copies; adjudication reads labels only). |
+| [`bhmemx/`](bhmemx/) | **Usable prototype** — multi-agent memory exercising FCIR **property 3-4** (preserved disagreement, deferred adjudication); the BUILD from the [property-3-4 re-score](applicability/RESCORE_FCIR.md). |
 | `db/` `merkle/` `wafer/` `gpu/` `compositional/` … | The terrains tested, each with code + `RESULTS_*.md`. |
 
 *Portuguese originals: `BH_MASTER.md`, `BH_PITCH_APRESENTACAO.md`,

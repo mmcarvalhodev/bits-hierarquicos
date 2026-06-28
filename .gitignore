@@ -15,6 +15,7 @@ env/
 *.bht
 *.bckpt
 *.bha
+*.bmx
 *.jsonl
 *.db
 *.sqlite
