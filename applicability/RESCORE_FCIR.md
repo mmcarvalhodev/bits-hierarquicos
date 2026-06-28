@@ -33,3 +33,26 @@
 3. **The genuine `BUILD` candidates are where no standard tool keeps it queryable:** **multi-agent AI memory** (the clearest — agents forced to consensus, no queryable disagreement layer), and arguably **clinical-trial adjudication, intel analysis, red-teaming, regulatory divergence** (workflows manual/siloed). These are *untested hypotheses* — the same status as any direction until measured.
 
 **Net:** re-scoring on the right property corrects the bias the critique exposed, **and** confirms the honest conclusion: the value is preserving disagreement as a discipline/model (FCIR), not a capability that does not exist elsewhere. The one place worth building is **multi-agent memory** — exercised next in `bhmemx/`.
+
+## Sharpening STANCE vs BUILD (second critique)
+
+A reviewer noted the original split was too lax: "the capability exists in an
+uncollapsed table" was being read as STANCE even where **no one keeps that table**
+because the workflow destroys it. That conflates *technical possibility* with
+*operational reality*. The sharper definition we now use:
+
+```
+STANCE: the capability exists AND is kept queryable in production by someone
+        (an uncollapsed table is actually maintained as a live object).
+BUILD:  the capability exists in principle but is SYSTEMATICALLY DESTROYED by the
+        workflow, tool, or regulation — no one keeps it as a first-class object.
+```
+
+Under this lens, **clinical-trial adjudication, intel analysis, regulatory
+divergence** move firmly to `BUILD` — not because the table is impossible, but
+because the regulatory/operational process *requires* a single adjudicated value
+and discards the rival readings by design. The gap FCIR fills there is real even
+though the capability is, in the abstract, "just a `GROUP BY`." (Honest caveat in
+the other direction — the [optionality-illusion limit](../BH_PRINCIPLE.md#honest-scope):
+if every downstream consumer demands a scalar, preserving the matrix buys
+provenance, not genuine deferral.)

@@ -157,6 +157,27 @@ practice becomes a discussable concept — but it **stands or falls as a
 synthesis**, and an honest reader should judge it as one, not as a mechanism that
 did not exist before.
 
+### Discipline, not paradigm — naming the contraction
+
+This investigation began with a larger ambition ("not a change of form, a change
+of paradigm") and has, under measurement, **contracted to a smaller and firmer
+claim** — and that contraction should be named, not left for the reader to infer.
+
+> FCIR is a **well-modeled discipline, not an impossible capability.** Its value
+> is **not** "nobody can do this without FCIR" — the
+> [disagreement-compute test](directions/RESULTS_DISAGREEMENT_COMPUTE.md) shows
+> an uncollapsed `(item, source, value)` table already answers every query a
+> `bhmemx`-style store does (4/4). Its value **is**: a single name, a falsifiable
+> test, formal operators (`⊕ Δ σ α ▷`), and the **discipline** of *not collapsing
+> on write* — given to a practice that industry workflows systematically abandon.
+
+A paradigm breaks when something was **impossible** before and is possible now
+(relativity changed the physics). Nothing here was impossible — disagreement was
+always a `GROUP BY` away in an uncollapsed table. What is real, and enough for a
+contribution, is that the prevailing practice **destroys** that table by default,
+and FCIR names, tests, and models the alternative. We claim the discipline; we do
+not claim the impossibility.
+
 A **formal algebra** of these operators — coexistence `⊕`, conflict `Δ`,
 projection `σ`, adjudication `α`, precedence `▷` — with FCIR stated precisely as
 `⊕ ⊥ α` (coexistence decoupled from adjudication), is in
@@ -192,6 +213,21 @@ demonstrate the *generalization* but lean on the already-SOTA substrate-sharing.
 - "Without forced adjudication" is a *representation* stance, not a truth claim:
   BH surfaces the contest and the majority; it does not decide who is right.
   Resolving truth stays a modeling choice the reader makes, or declines.
+- **The optionality can be illusory downstream.** Many consumers need *a single
+  resolved value*, not a matrix — so "deferred adjudication" often means "deferred
+  to the next system in the pipeline, which then force-adjudicates." FCIR's
+  optionality is real *in the store*; whether it survives to the point of use
+  depends on whether any downstream consumer is willing to carry the matrix
+  instead of demanding a scalar. Where every consumer demands a scalar, FCIR buys
+  provenance and auditability, not genuine deferral.
+- **It scales in K, but the storage win saturates.** A
+  [scaling probe](bhmemx/scale_test.py) (200 facts, K = 3 → 100 agents) shows the
+  marginal cost of agent *K+1* is **flat** (~one belief layer; linear, no
+  explosion) and read-time compute over the whole matrix stays sub-20 ms at
+  K = 100. But the storage saving vs K independent copies *saturates* (≈1.7× →
+  2.8×, then flat): once the per-agent layers dominate the shared substrate, the
+  "stored once" economy stops growing. The case for FCIR at high K is the
+  discipline and the single model — **not** an unbounded storage advantage.
 
 ## Why this is the advance
 
