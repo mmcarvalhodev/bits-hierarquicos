@@ -33,6 +33,14 @@ The same model, as text (for readers — human or machine — that don't render 
           σ one lens   ·   majority → "cat"   ·   ⊥ keep the disagreement
 ```
 
+## Start here (reading order)
+
+1. **This README** — the idea in one diagram (above).
+2. **[The Principle](BH_PRINCIPLE.md)** — what FCIR is, the falsifiable test, and an honest confrontation with the systems that already do it.
+3. **The honest map** — **[applicability/](applicability/)** (where it fits / where it's already SOTA) · **[the 3-4 re-score](applicability/RESCORE_FCIR.md)** (the right lens) · **[DIRECTIONS_EVAL](DIRECTIONS_EVAL.md)** (tested dead-ends).
+4. **[The Algebra](BH_ALGEBRA.md)** (formal model) · **[Conclusion](CONCLUSION.md)** (provisional verdict — hypothesis *not* confirmed).
+5. **Prototypes (measured):** [bhmem](bhmem/) · [bhtrace](bhtrace/) · [bhckpt](bhckpt/) · [bhanno](bhanno/) · [bhmemx](bhmemx/) (the FCIR-3-4 one). Full study: [BH_MASTER.en.md](BH_MASTER.en.md) · [Zenodo (DOI)](https://doi.org/10.5281/zenodo.20821058).
+
 ## What makes it different — and what doesn't
 
 Storing a substrate once and reading it selectively is **already mature SOTA** —

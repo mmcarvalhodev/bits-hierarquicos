@@ -33,6 +33,14 @@ O mesmo modelo, em texto (para leitores — humanos ou máquinas — que não re
           σ uma lente   ·   maioria → "gato"   ·   ⊥ manter a discordância
 ```
 
+## Começa aqui (ordem de leitura)
+
+1. **Este README** — a ideia num diagrama (acima).
+2. **[O Princípio](BH_PRINCIPLE.md)** — o que é a FCIR, o teste falsificável, e a confrontação honesta com os sistemas que já o fazem.
+3. **O mapa honesto** — **[applicability/](applicability/)** (onde serve / onde já é SOTA) · **[o re-score 3-4](applicability/RESCORE_FCIR.md)** (a lente certa) · **[DIRECTIONS_EVAL](DIRECTIONS_EVAL.md)** (becos sem saída testados).
+4. **[A Álgebra](BH_ALGEBRA.md)** (modelo formal) · **[Conclusão](CONCLUSION.md)** (veredito provisório — hipótese *não* confirmada).
+5. **Protótipos (medidos):** [bhmem](bhmem/) · [bhtrace](bhtrace/) · [bhckpt](bhckpt/) · [bhanno](bhanno/) · [bhmemx](bhmemx/) (o da FCIR-3-4). Estudo completo: [BH_MASTER.md](BH_MASTER.md) · [Zenodo (DOI)](https://doi.org/10.5281/zenodo.20821058).
+
 ## O que o torna diferente — e o que não torna
 
 Guardar um substrato uma vez e ler seletivo **já é SOTA maduro** — DICOM,
